@@ -7,15 +7,22 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ufcg.les.aep.R;
+import com.ufcg.les.aep.behaviour.Observer;
+import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
+import com.ufcg.les.aep.model.post.PostViewHolder;
 
 import butterknife.ButterKnife;
 
-public class PostAdapter extends RecyclerView.Adapter<Post> {
+public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements Observer {
+
 
     private static PostAdapter instance;
 
-    private PostAdapter() { }
+    private PostAdapter() {
+        Mocker.POST_MOCK.add(this);
+        Mocker.POST_MOCK.add(new Post("Post")); //TODO remove this initial post creation
+    }
 
     static {
         instance = new PostAdapter();
@@ -25,14 +32,13 @@ public class PostAdapter extends RecyclerView.Adapter<Post> {
         return instance;
     }
 
-
     @NonNull
     @Override
-    public Post onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
         final View view  = inflateView(parent, inflater);
         ButterKnife.bind(this, view);
-        return new Post(view);
+        return new PostViewHolder(view);
     }
 
     private View inflateView(@NonNull ViewGroup parent, LayoutInflater inflater) {
@@ -40,13 +46,16 @@ public class PostAdapter extends RecyclerView.Adapter<Post> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Post holder, int position) {
-        holder.bind();
-
+    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+        holder.bind(Mocker.POST_MOCK.getByPosition(position));
     }
 
     @Override
     public int getItemCount() {
-        return 10;//TODO Create a mock
+        return Mocker.POST_MOCK.size();
+    }
+
+    public void advise() {
+        notifyDataSetChanged();
     }
 }

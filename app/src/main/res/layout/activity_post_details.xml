@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.FeedActivity">
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/feed_recyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    tools:context=".activity.PostDetailsActivity">
 
 </android.support.constraint.ConstraintLayout>
