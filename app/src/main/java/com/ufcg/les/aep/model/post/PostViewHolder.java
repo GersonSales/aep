@@ -14,21 +14,16 @@ import butterknife.OnClick;
 
 public class PostViewHolder extends RecyclerView.ViewHolder {
 
-    private static int id;
-
-    private Context context;
-
     @BindView(R.id.postId_textView)
     TextView postId;
 
     public PostViewHolder(View itemView) {
         super(itemView);
-        this.context = itemView.getContext();
         ButterKnife.bind(this, itemView);
     }
 
     public void bind(Post post) {
-        postId.setText(post.getName().concat(String.valueOf(post.getId())));
+        postId.setText(post.getName());
     }
 
     @OnClick

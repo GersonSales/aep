@@ -14,48 +14,51 @@ import com.ufcg.les.aep.model.post.PostViewHolder;
 
 import butterknife.ButterKnife;
 
+
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements Observer {
-
-
-    private static PostAdapter instance;
-
-    private PostAdapter() {
-        Mocker.POST_MOCK.add(this);
-        Mocker.POST_MOCK.add(new Post("Post")); //TODO remove this initial post creation
-    }
-
-    static {
-        instance = new PostAdapter();
-    }
-
-    public static PostAdapter getInstance() {
-        return instance;
-    }
-
-    @NonNull
-    @Override
-    public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        final View view  = inflateView(parent, inflater);
-        ButterKnife.bind(this, view);
-        return new PostViewHolder(view);
-    }
-
-    private View inflateView(@NonNull ViewGroup parent, LayoutInflater inflater) {
-        return inflater.inflate(R.layout.post_row, parent, false);
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
-        holder.bind(Mocker.POST_MOCK.getByPosition(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return Mocker.POST_MOCK.size();
-    }
-
-    public void advise() {
-        notifyDataSetChanged();
-    }
+  private static PostAdapter instance;
+  
+  static {
+    instance = new PostAdapter();
+  }
+  
+  private PostAdapter() {
+    Mocker.POST_MOCK.add(this);
+    Mocker.POST_MOCK.add(new Post("Post")); //TODO remove this initial post creation
+  }
+  
+  public static PostAdapter getInstance() {
+    return instance;
+  }
+  
+  @NonNull
+  @Override
+  public PostViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    final LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+    final View view = inflateView(parent, inflater);
+    ButterKnife.bind(this, view);
+    return new PostViewHolder(view);
+  }
+  
+  private View inflateView(@NonNull ViewGroup parent, LayoutInflater inflater) {
+    return inflater.inflate(R.layout.post_row, parent, false);
+  }
+  
+  @Override
+  public void onBindViewHolder(@NonNull PostViewHolder holder, int position) {
+    holder.bind(getPostByPosition(position));
+  }
+  
+  private Post getPostByPosition(int position) {
+    return Mocker.POST_MOCK.getByPosition(position);
+  }
+  
+  @Override
+  public int getItemCount() {
+    return Mocker.POST_MOCK.size();
+  }
+  
+  public void advise() {
+    notifyDataSetChanged();
+  }
 }
