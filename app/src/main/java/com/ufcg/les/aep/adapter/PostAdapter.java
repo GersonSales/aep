@@ -14,7 +14,6 @@ import com.ufcg.les.aep.model.post.PostViewHolder;
 
 import butterknife.ButterKnife;
 
-
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements Observer {
   private static PostAdapter instance;
   
