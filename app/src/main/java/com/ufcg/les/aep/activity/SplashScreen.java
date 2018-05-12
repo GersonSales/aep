@@ -15,14 +15,14 @@ public class SplashScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
-
-
+        
         new Thread() {
             @Override
             public void run() {
                 try {
                     sleep(Constant.TWO_SECONDS);
                     startActivity(new Intent(SplashScreen.this, FeedActivity.class));
+                    finish();
                 } catch (InterruptedException error) {
                     Log.e(LogTag.FAILURE, error.getMessage(), error);
                 }

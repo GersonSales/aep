@@ -21,7 +21,8 @@ public class Mock<T> implements Observable{
         notifyAllObservers();
     }
 
-    public void add(Observer observer) {
+    @Override
+    public void attachObserver(Observer observer) {
         observers.add(observer);
     }
 

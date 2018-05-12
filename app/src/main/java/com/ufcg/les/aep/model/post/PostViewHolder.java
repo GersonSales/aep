@@ -1,34 +1,43 @@
 package com.ufcg.les.aep.model.post;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
-import com.ufcg.les.aep.model.mock.Mocker;
+import com.ufcg.les.aep.activity.PostDetailsActivity;
+import com.ufcg.les.aep.util.Tag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.ufcg.les.aep.util.Tag.POST;
+
 public class PostViewHolder extends RecyclerView.ViewHolder {
-
-    @BindView(R.id.postId_textView)
-    TextView postId;
-
-    public PostViewHolder(View itemView) {
-        super(itemView);
-        ButterKnife.bind(this, itemView);
-    }
-
-    public void bind(Post post) {
-        postId.setText(post.getName());
-    }
-
-    @OnClick
-    public void onClick() {
-        Mocker.POST_MOCK.add(new Post("Name"));
-//        this.context.startActivity(new Intent(this.context, PostDetailsActivity.class));//TODO Start the specific activity of the current post.
-    }
+  
+  private final Context context;
+  @BindView(R.id.postId_textView)
+  TextView postId;
+  private Post post;
+  
+  public PostViewHolder(View itemView) {
+    super(itemView);
+    this.context = itemView.getContext();
+    ButterKnife.bind(this, itemView);
+  }
+  
+  public void bind(Post post) {
+    this.post = post;
+    postId.setText(post.getName());
+  }
+  
+  @OnClick
+  public void onClick() {
+    final Intent detailsIntend = new Intent(this.context, PostDetailsActivity.class);
+    detailsIntend.putExtra(POST, this.post);
+    this.context.startActivity(detailsIntend);//TODO Start the specific activity of the current post.
+  }
 }
