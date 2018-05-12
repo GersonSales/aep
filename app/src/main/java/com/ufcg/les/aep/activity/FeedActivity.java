@@ -21,11 +21,17 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
+import com.microsoft.appcenter.AppCenter;
+import com.microsoft.appcenter.analytics.Analytics;
+import com.microsoft.appcenter.crashes.Crashes;
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.adapter.PostAdapter;
+import com.ufcg.les.aep.util.Constant;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+
+import static com.ufcg.les.aep.util.Constant.APP_SECRET;
 
 
 /**
@@ -65,6 +71,12 @@ public class FeedActivity extends AppCompatActivity {
     setSupportActionBar(mToolbar);
     
     initRecyclerView();
+    initAppCenterAnalytics();
+  }
+  
+  private void initAppCenterAnalytics() {
+    AppCenter.start(getApplication(), APP_SECRET,
+       Analytics.class, Crashes.class);
   }
   
   /**
