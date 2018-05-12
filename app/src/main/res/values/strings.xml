@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Aep</string>
+    <string name="splash_screen">SplashScreen</string>
+    <string name="feed">Feed</string>
+    <string name="post">post</string>
+    <string name="details">details</string>
 </resources>
