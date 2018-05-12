@@ -8,10 +8,18 @@
 
 package com.ufcg.les.aep.activity;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.adapter.PostAdapter;
@@ -25,6 +33,13 @@ import butterknife.ButterKnife;
  * {@link com.ufcg.les.aep.model.post.Post}.
  */
 public class FeedActivity extends AppCompatActivity {
+    private Toolbar mToolbar;
+    private MenuItem mSearchAction;
+    private MenuItem mCadastraAction;
+    private boolean isSearchOpened = false;
+    private EditText edtSearch;
+
+
   
   /**
    * This RecyclerView is responsible to list the {@link com.ufcg.les.aep.model.post.Post} and
@@ -46,6 +61,8 @@ public class FeedActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_feed);
     ButterKnife.bind(this);
+    mToolbar = findViewById(R.id.toolbar);
+    setSupportActionBar(mToolbar);
     
     initRecyclerView();
   }
@@ -57,4 +74,74 @@ public class FeedActivity extends AppCompatActivity {
     feedRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     feedRecyclerView.setAdapter(PostAdapter.getInstance());
   }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        mSearchAction = menu.findItem(R.id.action_search);
+        mCadastraAction = menu.findItem(R.id.action_cadastro);
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.action_search:
+                handleMenuSearch();
+                return true;
+            case R.id.action_cadastro:
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    protected void handleMenuSearch(){
+        ActionBar action = getSupportActionBar();
+
+        if(isSearchOpened){
+            action.setDisplayShowCustomEnabled(false);
+            action.setDisplayShowTitleEnabled(true);
+            
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(edtSearch.getWindowToken(), 0);
+
+            //mSearchAction.setIcon(getResources().getDrawable(R.drawable.ic_open_search)); onde mudar o icone TODO
+
+            isSearchOpened = false;
+        } else { //open the search entry
+
+            action.setDisplayShowCustomEnabled(true);
+            // custom view in the action bar.
+            action.setCustomView(R.layout.search_bar);
+            action.setDisplayShowTitleEnabled(false);
+
+            edtSearch = action.getCustomView().findViewById(R.id.edtSearch); //the text editor
+
+            edtSearch.setOnEditorActionListener((v, actionId, event) -> {
+                if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                    //doSearch(); onde fazer a pesquisa TODO
+                    return true;
+                }
+                return false;
+            });
+
+
+            edtSearch.requestFocus();
+
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.showSoftInput(edtSearch, InputMethodManager.SHOW_IMPLICIT);
+
+            //mSearchAction.setIcon(getResources().getDrawable(R.drawable.ic_close_search));TODO
+            isSearchOpened = true;
+        }
+    }
 }
