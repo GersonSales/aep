@@ -36,9 +36,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   public void bind(final Post post) {
     this.post = post;
     postId.setText(post.getTitle());
-    //postId.setText(post.getName());
-    //imagePost.setImageBitmap(post.getImage()); TODO (when the attribute in POST has been created)
-    //textTitulo.setText(post.getTitulo()); TODO (when the attribute in POST has been created)
   }
   
   @OnClick
