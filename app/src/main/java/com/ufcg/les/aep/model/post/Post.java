@@ -16,7 +16,7 @@ public class Post implements Serializable , Comparable<Post>{
   private int id;
   private String title;
   private String description;
-  private List<Bitmap> images;
+  private transient List<Bitmap> images;
   private List<Tag> tags;
   
   public Post(String title, String description, List<Bitmap> images, List<Tag> tags) {
@@ -75,5 +75,9 @@ public class Post implements Serializable , Comparable<Post>{
   @Override
   public int compareTo(@NonNull final Post post) {
     return post.getCreationDate().compareTo(getCreationDate());
+  }
+  
+  public Bitmap getMainImage() {
+    return images.isEmpty() ? null : images.get(0);
   }
 }
