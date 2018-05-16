@@ -1,14 +1,18 @@
 package com.ufcg.les.aep.model.post;
 
 import android.graphics.Bitmap;
+import android.support.annotation.NonNull;
+
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
-public class Post implements Serializable {
+public class Post implements Serializable , Comparable<Post>{
   private static final long serialVersionUID = 690241872815232514L;
   
   private static int postId;
   
+  private Date creationDate;
   private int id;
   private String title;
   private String description;
@@ -16,11 +20,16 @@ public class Post implements Serializable {
   private List<Tag> tags;
   
   public Post(String title, String description, List<Bitmap> images, List<Tag> tags) {
+    this.creationDate = new Date();
     this.id = postId++;
     this.title = title;
     this.description = description;
     this.images = images;
     this.tags = tags;
+  }
+  
+  public Date getCreationDate() {
+    return creationDate;
   }
   
   public int getId() {
@@ -61,5 +70,10 @@ public class Post implements Serializable {
   
   public void setTags(List<Tag> tags) {
     this.tags = tags;
+  }
+  
+  @Override
+  public int compareTo(@NonNull final Post post) {
+    return post.getCreationDate().compareTo(getCreationDate());
   }
 }

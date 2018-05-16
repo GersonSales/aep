@@ -99,7 +99,6 @@ public class FeedActivity extends AppCompatActivity {
   
   private void initFeedRefresher() {
     this.feedRefresher.setOnRefreshListener(this :: refreshFeed);
-    
   }
   
   private void refreshFeed() {
