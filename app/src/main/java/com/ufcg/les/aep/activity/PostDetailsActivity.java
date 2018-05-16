@@ -55,7 +55,8 @@ public class PostDetailsActivity extends AppCompatActivity {
   }
 
   private void setPostImages(Post post) {
-    if(post.getImages().size() > 0) postImage.setImageBitmap(post.getImages().get(0));
+    if(post.getImages() != null && post.getImages().size() > 0)
+        postImage.setImageBitmap(post.getImages().get(0));
   }
 
   private void setPostContent(Post post) {
