@@ -14,11 +14,20 @@ import butterknife.ButterKnife;
 
 public class PostDetailsActivity extends AppCompatActivity {
   
-  @BindView(R.id.details_textView)
-  TextView details;
+  @BindView(R.id.postTitle_textView)
+  TextView postTitle;
 
   @BindView(R.id.postImage_imageView)
   ImageView postImage;
+
+  @BindView(R.id.postDescription_textView)
+  TextView postDescription;
+
+  @BindView(R.id.postName_textView)
+  TextView postName;
+
+  @BindView(R.id.postContact_textView)
+  TextView postContact;
   
   private Post post;
   
@@ -36,12 +45,24 @@ public class PostDetailsActivity extends AppCompatActivity {
       final Object postObject = extras.get(Tag.POST);
       if (postObject instanceof Post) {
         this.post = (Post) postObject;
-        details.setText(Tag.DETAILS_OF.concat(" ").concat(this.post.getTitle()));
+        postTitle.setText(Tag.DETAILS_OF.concat(" ").concat(this.post.getTitle()));
 
-        if(this.post.getImages().size() > 0) {
-          postImage.setImageBitmap(this.post.getImages().get(0));
-        }
+        setPostImages(this.post);
+
+        setPostContent(this.post);
       }
     }
+  }
+
+  private void setPostImages(Post post) {
+    if(post.getImages().size() > 0) postImage.setImageBitmap(post.getImages().get(0));
+  }
+
+  private void setPostContent(Post post) {
+    postDescription.setText(post.getDescription());
+
+    postName.setText("Name: ".concat(" Nome a criar no model POST"));
+
+    postContact.setText("Contato: ".concat("Contato a criar no model POST"));
   }
 }
