@@ -4,4 +4,5 @@
     <string name="feed">Feed</string>
     <string name="post">post</string>
     <string name="details">details</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

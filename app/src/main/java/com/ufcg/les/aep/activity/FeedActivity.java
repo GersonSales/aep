@@ -43,7 +43,6 @@ import static com.ufcg.les.aep.util.Constant.APP_SECRET;
 public class FeedActivity extends AppCompatActivity {
     private Toolbar mToolbar;
     private MenuItem mSearchAction;
-    private MenuItem mCadastraAction;
     private boolean isSearchOpened = false;
     private EditText edtSearch;
 
@@ -115,7 +114,6 @@ public class FeedActivity extends AppCompatActivity {
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         mSearchAction = menu.findItem(R.id.action_search);
-        mCadastraAction = menu.findItem(R.id.action_cadastro);
         return super.onPrepareOptionsMenu(menu);
     }
 
@@ -126,9 +124,6 @@ public class FeedActivity extends AppCompatActivity {
         switch (id){
             case R.id.action_search:
                 handleMenuSearch();
-                return true;
-            case R.id.action_cadastro:
-
                 return true;
         }
 

@@ -5,13 +5,8 @@
     android:id="@+id/action_search"
     android:orderInCategory="200"
     android:title="Pesquisar"
+    android:icon="@mipmap/lupa_gordin"
     app:showAsAction="ifRoom">
 </item>
-    <item
-        android:id="@+id/action_cadastro"
-        android:orderInCategory="100"
-        android:title="Cadastro"
-        app:showAsAction="ifRoom">
-    </item>
 
 </menu>
