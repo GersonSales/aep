@@ -5,4 +5,7 @@
     <string name="post">post</string>
     <string name="details">details</string>
     <string name="title_activity_main2">Main2Activity</string>
+    <string name="object_title">Titulo Objeto</string>
+    <string name="todo">TODO</string>
+    <string name="object_description">Descrição do Objeto</string>
 </resources>

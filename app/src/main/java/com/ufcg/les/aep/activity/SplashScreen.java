@@ -1,6 +1,7 @@
 package com.ufcg.les.aep.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,6 +11,7 @@ import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.util.Constant;
 import com.ufcg.les.aep.util.LogTag;
+import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
 
@@ -36,7 +38,10 @@ public class SplashScreen extends AppCompatActivity {
   }
   
   private void initPostMock() {
-    Mocker.POST_MOCK.add(new Post("Smart phone","Description", new ArrayList<>(), new ArrayList<>()));
-    Mocker.POST_MOCK.add(new Post("Child","Description", new ArrayList<>(), new ArrayList<>()));
+    Bitmap bitmap = MediaUtil.getBitmapFromURL("https://conteudo.imguol.com.br/p/pp/2013/assistencia-tecnica/dicas/thumb_windows_531x306.jpg");
+    ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    bitmaps.add(bitmap);
+    Mocker.POST_MOCK.add(new Post("Smart phone","Description", bitmaps , new ArrayList<>()));
+    Mocker.POST_MOCK.add(new Post("Child","Description", bitmaps, new ArrayList<>()));
   }
 }
