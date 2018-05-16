@@ -10,6 +10,7 @@ package com.ufcg.les.aep.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -26,6 +27,7 @@ import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.adapter.PostAdapter;
+import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.util.Constant;
 
 import butterknife.BindView;
@@ -53,6 +55,13 @@ public class FeedActivity extends AppCompatActivity {
    */
   @BindView(R.id.feed_recyclerView)
   RecyclerView feedRecyclerView;
+  
+  /**
+   * This field is the representation of the {@link SwipeRefreshLayout} that's responsible o create
+   * a refresh interaction with the feed_recyclerView layout.
+   */
+  @BindView(R.id.feed_swipeRefresh)
+  SwipeRefreshLayout feedRefresher;
   
   
   /**
@@ -83,11 +92,21 @@ public class FeedActivity extends AppCompatActivity {
    * This method ensures that the {@link FeedActivity}'s {@link RecyclerView} is create correctly.
    */
   private void initRecyclerView() {
+    initFeedRefresher();
     feedRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     feedRecyclerView.setAdapter(PostAdapter.getInstance());
   }
-
-    @Override
+  
+  private void initFeedRefresher() {
+    this.feedRefresher.setOnRefreshListener(this :: refreshFeed);
+  }
+  
+  private void refreshFeed() {
+    Mocker.update();
+    this.feedRefresher.setRefreshing(false);
+  }
+  
+  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
         return true;

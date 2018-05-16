@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.activity.PostDetailsActivity;
-import com.ufcg.les.aep.util.Tag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -34,11 +33,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     ButterKnife.bind(this, itemView);
   }
   
-  public void bind(Post post) {
+  public void bind(final Post post) {
     this.post = post;
-    postId.setText(post.getName());
-    //imagePost.setImageBitmap(post.getImage()); TODO (when the attribute in POST has been created)
-    //textTitulo.setText(post.getTitulo()); TODO (when the attribute in POST has been created)
+    postId.setText(post.getTitle());
   }
   
   @OnClick
