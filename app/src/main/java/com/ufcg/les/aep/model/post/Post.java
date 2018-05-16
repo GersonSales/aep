@@ -13,11 +13,13 @@ public class Post implements Serializable {
   private String title;
   private String description;
   private List<Bitmap> images;
+  private List<Tag> tags;
   
-  public Post(String description, List<Bitmap> images) {
-    id = postId++;
+  public Post(String description, List<Bitmap> images, List<Tag> tags) {
+    this.id = postId++;
     this.description = description;
     this.images = images;
+    this.tags = tags;
   }
   
   
