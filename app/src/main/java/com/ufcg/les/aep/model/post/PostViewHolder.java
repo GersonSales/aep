@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.activity.PostDetailsActivity;
-import com.ufcg.les.aep.util.Tag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
