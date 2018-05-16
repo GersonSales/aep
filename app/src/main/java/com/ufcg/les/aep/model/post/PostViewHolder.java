@@ -19,8 +19,10 @@ import static com.ufcg.les.aep.util.Tag.POST;
 public class PostViewHolder extends RecyclerView.ViewHolder {
   
   private final Context context;
+  
   @BindView(R.id.postId_textView)
   TextView postId;
+  
   private Post post;
   
   public PostViewHolder(View itemView) {
@@ -29,9 +31,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     ButterKnife.bind(this, itemView);
   }
   
-  public void bind(Post post) {
+  public void bind(final Post post) {
     this.post = post;
-    postId.setText(post.getName());
+    postId.setText(post.getTitle());
   }
   
   @OnClick

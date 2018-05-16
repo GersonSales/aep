@@ -32,7 +32,7 @@ public class PostDetailsActivity extends AppCompatActivity {
       final Object postObject = extras.get(Tag.POST);
       if (postObject instanceof Post) {
         this.post = (Post) postObject;
-        details.setText(Tag.DETAILS_OF.concat(" ").concat(this.post.getName()));
+        details.setText(Tag.DETAILS_OF.concat(" ").concat(this.post.getTitle()));
       }
     }
   }
