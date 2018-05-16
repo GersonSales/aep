@@ -23,9 +23,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements
   
   private PostAdapter() {
     Mocker.POST_MOCK.attachObserver(this);
-    Mocker.POST_MOCK.add(new Post("Post1"));//TODO REMOVE
-    Mocker.POST_MOCK.add(new Post("Post2"));//TODO REMOVE
-    Mocker.POST_MOCK.add(new Post("Post3"));//TODO REMOVE
   }
   
   public static PostAdapter getInstance() {
