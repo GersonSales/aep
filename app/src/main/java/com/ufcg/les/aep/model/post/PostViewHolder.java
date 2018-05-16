@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
@@ -19,10 +20,12 @@ import static com.ufcg.les.aep.util.Tag.POST;
 public class PostViewHolder extends RecyclerView.ViewHolder {
   
   private final Context context;
-  
   @BindView(R.id.postId_textView)
   TextView postId;
-  
+  @BindView(R.id.imageId_imageObject)
+  ImageView imagePost;
+  @BindView(R.id.postid_titulo)
+  TextView textTitulo;
   private Post post;
   
   public PostViewHolder(View itemView) {
@@ -34,6 +37,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   public void bind(final Post post) {
     this.post = post;
     postId.setText(post.getTitle());
+    //postId.setText(post.getName());
+    //imagePost.setImageBitmap(post.getImage()); TODO (when the attribute in POST has been created)
+    //textTitulo.setText(post.getTitulo()); TODO (when the attribute in POST has been created)
   }
   
   @OnClick
