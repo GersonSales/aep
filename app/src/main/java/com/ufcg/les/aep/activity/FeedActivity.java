@@ -136,7 +136,8 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        copyToFrom(Mocker.POST_MOCK.getList(), backupMock);
+        ArrayList<Post> newMock = new ArrayList<>(backupMock);
+        Mocker.POST_MOCK.setList(newMock);
         backupMock = null;
 
         return true;
@@ -164,13 +165,13 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
             Mocker.POST_MOCK.setList(newMock);
             return true;
 
-        } else {
-            copyToFrom(Mocker.POST_MOCK.getList(), backupMock);
+        } else if(newText.isEmpty()) {
+            ArrayList<Post> newMock = new ArrayList<>(backupMock);
+            Mocker.POST_MOCK.setList(newMock);
             backupMock = null;
-            System.out.println("Otaro nem entrei");
-
-            return false;
         }
+
+        return false;
     }
 
     private void copyToFrom(List to, List<Post> from) {
