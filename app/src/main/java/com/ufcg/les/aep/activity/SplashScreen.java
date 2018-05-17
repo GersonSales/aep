@@ -4,13 +4,10 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
-import com.ufcg.les.aep.util.Constant;
-import com.ufcg.les.aep.util.LogTag;
 import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
@@ -25,14 +22,9 @@ public class SplashScreen extends AppCompatActivity {
     new Thread() {
       @Override
       public void run() {
-        try {
-          sleep(Constant.TWO_SECONDS);
-          initPostMock();
-          startActivity(new Intent(SplashScreen.this, FeedActivity.class));
-          finish();
-        } catch (InterruptedException error) {
-          Log.e(LogTag.FAILURE, error.getMessage(), error);
-        }
+        initPostMock();
+        startActivity(new Intent(SplashScreen.this, FeedActivity.class));
+        finish();
       }
     }.start();
   }
@@ -47,7 +39,7 @@ public class SplashScreen extends AppCompatActivity {
     Mocker.POST_MOCK.add(new Post("Smart phone", "Description", bitmaps, new ArrayList<>()));
     Mocker.POST_MOCK.add(new Post("Child", "Description", bitmaps, new ArrayList<>()));
     
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 10; i++) {
       Mocker.POST_MOCK.add(new Post("Lorem ipsum", "dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus d", bitmaps, new ArrayList<>()));
     }
   }

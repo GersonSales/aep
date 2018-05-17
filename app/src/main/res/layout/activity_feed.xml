@@ -7,8 +7,6 @@
     tools:context=".activity.FeedActivity"
     android:layout_centerHorizontal="true">
 
-
-
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar"

@@ -1,8 +1,11 @@
 package com.ufcg.les.aep.model.post;
 
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +16,7 @@ import com.ufcg.les.aep.activity.PostDetailsActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.OnLongClick;
 
 import static com.ufcg.les.aep.util.Tag.POST;
 
@@ -35,6 +39,7 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     super(itemView);
     this.context = itemView.getContext();
     ButterKnife.bind(this, itemView);
+    
   }
   
   public void bind(final Post post) {

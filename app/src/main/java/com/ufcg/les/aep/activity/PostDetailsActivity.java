@@ -1,8 +1,11 @@
 package com.ufcg.les.aep.activity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -13,6 +16,8 @@ import com.ufcg.les.aep.util.Tag;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnLongClick;
+import butterknife.OnTouch;
 
 public class PostDetailsActivity extends AppCompatActivity {
   
@@ -39,6 +44,11 @@ public class PostDetailsActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    
+    if (getSupportActionBar() != null) {
+      getSupportActionBar().hide();
+    }
+    
     setContentView(R.layout.activity_post_details);
     ButterKnife.bind(this);
     getPostFromIntent();

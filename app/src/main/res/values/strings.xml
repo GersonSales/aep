@@ -8,4 +8,6 @@
     <string name="object_title">Object Title</string>
     <string name="todo">TODO</string>
     <string name="object_description">Object Description</string>
+    <string name="object_name">Object name</string>
+    <string name="object_contact">Object contact</string>
 </resources>
