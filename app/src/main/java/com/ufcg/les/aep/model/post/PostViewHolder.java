@@ -2,7 +2,6 @@ package com.ufcg.les.aep.model.post;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.MediaStore;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,7 +9,6 @@ import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.activity.PostDetailsActivity;
-import com.ufcg.les.aep.util.MediaUtil;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,14 +19,16 @@ import static com.ufcg.les.aep.util.Tag.POST;
 public class PostViewHolder extends RecyclerView.ViewHolder {
   
   private final Context context;
-  @BindView(R.id.postId_textView)
-  TextView postId;
   
-  @BindView(R.id.imageId_imageObject)
+  @BindView(R.id.postTitle_textView)
+  TextView title;
+  
+  @BindView(R.id.postImage_imageView)
   ImageView imagePost;
   
-  @BindView(R.id.postid_titulo)
-  TextView textTitulo;
+  @BindView(R.id.postDescription_textView)
+  TextView description;
+  
   private Post post;
   
   public PostViewHolder(View itemView) {
@@ -39,7 +39,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   
   public void bind(final Post post) {
     this.post = post;
-    postId.setText(post.getTitle());
+    this.title.setText(post.getTitle());
+    this.description.setText(post.getDescription());
     imagePost.setImageBitmap(post.getMainImage());
   }
   
