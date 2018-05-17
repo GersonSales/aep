@@ -40,7 +40,9 @@ public class SplashScreen extends AppCompatActivity {
   private void initPostMock() {
     Bitmap bitmap = MediaUtil.getBitmapFromURL("https://conteudo.imguol.com.br/p/pp/2013/assistencia-tecnica/dicas/thumb_windows_531x306.jpg");
     ArrayList<Bitmap> bitmaps = new ArrayList<>();
-    bitmaps.add(bitmap);
+    for (int i = 0; i < 3; i ++) {
+      bitmaps.add(bitmap);
+    }
     Mocker.POST_MOCK.add(new Post("Smart phone","Description", bitmaps , new ArrayList<>()));
     Mocker.POST_MOCK.add(new Post("Child","Description", bitmaps, new ArrayList<>()));
   }
