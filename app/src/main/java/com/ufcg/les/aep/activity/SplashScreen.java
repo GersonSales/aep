@@ -13,6 +13,8 @@ import com.ufcg.les.aep.util.MediaUtil;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.ufcg.les.aep.util.MediaUtil.getBitmapListFromURL;
+
 public class SplashScreen extends AppCompatActivity {
   
   @Override
@@ -68,14 +70,6 @@ public class SplashScreen extends AppCompatActivity {
     
   }
   
-  private List<Bitmap> getBitmapListFromURL(String... urlList) {
-    final List<Bitmap> result  = new ArrayList<>();
-    for (final String url : urlList) {
-      result.add(MediaUtil.getBitmapFromURL(url));
-    }
-    
-    return result;
-    
-  }
+
   
 }

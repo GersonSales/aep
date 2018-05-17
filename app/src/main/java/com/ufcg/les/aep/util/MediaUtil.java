@@ -36,14 +36,14 @@ public class MediaUtil {
     }
   }
   
-  public static Bitmap getBitmapFromURL(String url){
+  private static Bitmap getBitmapFromURL(String url){
     Bitmap result = null;
     try {
       result = new NetworkAccess().execute(url).get();
     } catch (InterruptedException | ExecutionException e) {
       e.printStackTrace();
     }
-    return result;//
+    return result;
   }
   
   public  static Bitmap decodeByteArray(byte[] byteArray) {
@@ -70,6 +70,16 @@ public class MediaUtil {
       result.add(encodeBitmap(bitmap));
     }
     return result;
+  }
+  
+  public static List<Bitmap> getBitmapListFromURL(String... urlList) {
+    final List<Bitmap> result  = new ArrayList<>();
+    for (final String url : urlList) {
+      result.add(MediaUtil.getBitmapFromURL(url));
+    }
+    
+    return result;
+    
   }
   
 }
