@@ -3,6 +3,8 @@ package com.ufcg.les.aep.model.post;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import com.ufcg.les.aep.util.MediaUtil;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -16,7 +18,7 @@ public class Post implements Serializable , Comparable<Post>{
   private int id;
   private String title;
   private String description;
-  private transient List<Bitmap> images;
+  private List<byte[]> byteImages;
   private List<Tag> tags;
   
   public Post(String title, String description, List<Bitmap> images, List<Tag> tags) {
@@ -24,7 +26,7 @@ public class Post implements Serializable , Comparable<Post>{
     this.id = postId++;
     this.title = title;
     this.description = description;
-    this.images = images;
+    this.byteImages = MediaUtil.encodeBitmapList(images);
     this.tags = tags;
   }
   
@@ -57,11 +59,7 @@ public class Post implements Serializable , Comparable<Post>{
   }
   
   public List<Bitmap> getImages() {
-    return images;
-  }
-  
-  public void setImages(List<Bitmap> images) {
-    this.images = images;
+    return MediaUtil.decodeByteArrayList(this.byteImages);
   }
   
   public List<Tag> getTags() {
@@ -78,6 +76,6 @@ public class Post implements Serializable , Comparable<Post>{
   }
   
   public Bitmap getMainImage() {
-    return images.isEmpty() ? null : images.get(0);
+    return this.byteImages.isEmpty() ? null : MediaUtil.decodeByteArray(this.byteImages.get(0));
   }
 }

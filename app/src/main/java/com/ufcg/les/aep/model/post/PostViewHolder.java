@@ -45,8 +45,8 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   
   @OnClick
   public void onClick() {
-    final Intent detailsIntend = new Intent(this.context, PostDetailsActivity.class);
-    detailsIntend.putExtra(POST, this.post);
-    this.context.startActivity(detailsIntend);//TODO Start the specific activity of the current post.
+    final Intent detailsIntent = new Intent(this.context, PostDetailsActivity.class);
+    detailsIntent.putExtra(POST, this.post);
+    this.context.startActivity(detailsIntent);//TODO Start the specific activity of the current post.
   }
 }
