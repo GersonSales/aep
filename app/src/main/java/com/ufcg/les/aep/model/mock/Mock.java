@@ -44,6 +44,12 @@ public class Mock<T extends Comparable<T>> implements Observable {
   public int size() {
     return list.size();
   }
+
+  public void setList(List<T> list) {
+      this.list = list;
+      notifyAllObservers();
+  }
+  public List<T> getList() { return this.list;  }
   
   private void notifyAllObservers() {
     for (Observer observer : this.observers) {
