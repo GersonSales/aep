@@ -4,6 +4,7 @@
 
     <item android:id="@+id/search"
         android:title="Champson"
+        android:icon="@mipmap/lupa_nova"
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.widget.SearchView" />
 
