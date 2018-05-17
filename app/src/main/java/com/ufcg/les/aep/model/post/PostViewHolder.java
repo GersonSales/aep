@@ -1,22 +1,19 @@
 package com.ufcg.les.aep.model.post;
 
-import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.activity.PostDetailsActivity;
+import com.ufcg.les.aep.adapter.PostImageAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.OnLongClick;
 
 import static com.ufcg.les.aep.util.Tag.POST;
 
@@ -27,8 +24,11 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   @BindView(R.id.postTitle_textView)
   TextView title;
   
-  @BindView(R.id.postImage_imageView)
-  ImageView imagePost;
+//  @BindView(R.id.postImage_imageView)
+//  ImageView imagePost;
+  
+  @BindView(R.id.postImages_viewPager)
+  ViewPager imageViewPager;
   
   @BindView(R.id.postDescription_textView)
   TextView description;
@@ -39,17 +39,21 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     super(itemView);
     this.context = itemView.getContext();
     ButterKnife.bind(this, itemView);
-    
+  }
+  
+  private void initViewPager() {
+    final PostImageAdapter imageAdapter = new PostImageAdapter(this.post.getImages());
+    imageViewPager.setAdapter(imageAdapter);
   }
   
   public void bind(final Post post) {
     this.post = post;
     this.title.setText(post.getTitle());
     this.description.setText(post.getDescription());
-    imagePost.setImageBitmap(post.getMainImage());
+    initViewPager();
   }
   
-  @OnClick
+//  @OnClick
   public void onClick() {
     final Intent detailsIntent = new Intent(this.context, PostDetailsActivity.class);
     detailsIntent.putExtra(POST, this.post);

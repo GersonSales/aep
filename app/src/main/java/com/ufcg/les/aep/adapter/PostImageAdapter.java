@@ -37,7 +37,7 @@ public class PostImageAdapter extends PagerAdapter {
   @Override
   public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
     ImageView mImageView = new ImageView(container.getContext());
-    mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+    mImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
     mImageView.setImageBitmap(this.bitmapList.get(position));
     container.addView(mImageView, 0);
     return mImageView;

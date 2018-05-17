@@ -11,6 +11,7 @@ import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SplashScreen extends AppCompatActivity {
   
@@ -30,18 +31,51 @@ public class SplashScreen extends AppCompatActivity {
   }
   
   private void initPostMock() {
-//    Bitmap bitmap = MediaUtil.getBitmapFromURL("http://images4.fanpop.com/image/photos/19600000/FFXII-final-fantasy-xii-19662559-500-375.jpg");
-    Bitmap bitmap = MediaUtil.getBitmapFromURL("https://conteudo.imguol.com.br/p/pp/2013/assistencia-tecnica/dicas/thumb_windows_531x306.jpg");
-    ArrayList<Bitmap> bitmaps = new ArrayList<>();
-    for (int i = 0; i < 3; i++) {
-      bitmaps.add(bitmap);
-    }
-    Mocker.POST_MOCK.add(new Post("Smart phone", "Description", bitmaps, new ArrayList<>()));
-    Mocker.POST_MOCK.add(new Post("Child", "Description", bitmaps, new ArrayList<>()));
     
-    for (int i = 0; i < 10; i++) {
-      Mocker.POST_MOCK.add(new Post("Lorem ipsum", "dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus d", bitmaps, new ArrayList<>()));
+    final String[] iphone4LinkList = {
+       "https://goo.gl/C5JgAJ",
+       "https://goo.gl/ud3n9L"
+    };
+    
+    final Post iphone4Post = new Post("Iphone4", "I've lost an Iphone 4", getBitmapListFromURL(iphone4LinkList), null);
+    Mocker.POST_MOCK.add(iphone4Post);
+  
+  
+    final String[] s8LinkList = {
+       "https://goo.gl/grQs1z",
+       "https://goo.gl/MkQLXG",
+       "https://goo.gl/cTcxyC"
+    };
+  
+    final Post s8Post = new Post("Galaxy S8", "I've lost my Samsumg Galaxy S8", getBitmapListFromURL(s8LinkList), null);
+    Mocker.POST_MOCK.add(s8Post);
+  
+    final String[] dellLinkList = {
+       "https://goo.gl/EbrH2z",
+    };
+  
+    final Post dellPost = new Post("DELL laptop", "I've found a DELL laptop.", getBitmapListFromURL(dellLinkList), null);
+    Mocker.POST_MOCK.add(dellPost);
+  
+    final String[] raybanLinkList = {
+       "https://goo.gl/KZKZr9",
+       "https://goo.gl/TAfYHW"
+    };
+  
+    final Post raybanPost = new Post("RayBan", "I've lost my RayBan.", getBitmapListFromURL(raybanLinkList), null);
+    Mocker.POST_MOCK.add(raybanPost);
+    
+    
+  }
+  
+  private List<Bitmap> getBitmapListFromURL(String... urlList) {
+    final List<Bitmap> result  = new ArrayList<>();
+    for (final String url : urlList) {
+      result.add(MediaUtil.getBitmapFromURL(url));
     }
+    
+    return result;
+    
   }
   
 }
