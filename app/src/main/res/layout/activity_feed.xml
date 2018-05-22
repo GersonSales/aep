@@ -31,4 +31,15 @@
 
     </android.support.v4.widget.SwipeRefreshLayout>
 
+    <Button
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:id="@+id/post_creation_button"
+        android:background="@drawable/submit_button"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+
 </android.support.constraint.ConstraintLayout>
