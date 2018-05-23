@@ -28,11 +28,12 @@ import static com.ufcg.les.aep.util.LogTag.FAILURE;
 
 public class MediaUtil {
   
-  private static final String AUTHORITY = "android.gerson.com.cameraapp";
+  private static final String AUTHORITY = "com.ufcg.les.aep";
   private static final String JPG = "jpg";
   private static final String MP4 = "mp4";
   
   public static final int HIGH_QUALITY = 1;
+  public static int MEDIA_CAPTURE;
   
   
   public static Uri getUriFromFile(final Context context, final File file) {

@@ -10,8 +10,8 @@ import java.io.Serializable;
 public class AbstractMedia implements Serializable{
   
   private static final long serialVersionUID = -3428456054992368708L;
-  private final Uri uri;
-  private final Bitmap thumbnail;
+  private transient final Uri uri;
+  private transient final Bitmap thumbnail;
   
   AbstractMedia(final Uri uri) {
     this.uri = uri;

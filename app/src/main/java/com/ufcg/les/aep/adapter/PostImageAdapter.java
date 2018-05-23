@@ -1,25 +1,26 @@
 package com.ufcg.les.aep.adapter;
 
-import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 
+import com.ufcg.les.aep.model.media.AbstractMedia;
+
 import java.util.List;
 
 public class PostImageAdapter extends PagerAdapter {
   
-  private final List<Bitmap> bitmapList;
+  private final List<AbstractMedia> mediaList;
   
-  public PostImageAdapter(final List<Bitmap> bitmapList) {
-    this.bitmapList = bitmapList;
+  public PostImageAdapter(final List<AbstractMedia> mediaList) {
+    this.mediaList = mediaList;
   }
   
   @Override
   public int getCount() {
-    return this.bitmapList.size();
+    return this.mediaList.size();
   }
   
   @Override
@@ -38,7 +39,7 @@ public class PostImageAdapter extends PagerAdapter {
   public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
     ImageView mImageView = new ImageView(container.getContext());
     mImageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
-    mImageView.setImageBitmap(this.bitmapList.get(position));
+    mImageView.setImageBitmap(this.mediaList.get(position).getThumbnail());
     container.addView(mImageView, 0);
     return mImageView;
   }

@@ -19,7 +19,6 @@ public class Post implements Serializable , Comparable<Post>{
   private String title;
   private String description;
   private List<AbstractMedia> mediaList;
-  private List<byte[]> byteImages;
   private List<Tag> tags;
   
   public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags) {

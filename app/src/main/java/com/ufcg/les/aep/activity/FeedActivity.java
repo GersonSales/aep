@@ -10,7 +10,9 @@ package com.ufcg.les.aep.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -24,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 
@@ -32,9 +35,12 @@ import com.microsoft.appcenter.analytics.Analytics;
 import com.microsoft.appcenter.crashes.Crashes;
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.adapter.PostAdapter;
+import com.ufcg.les.aep.model.media.AbstractMedia;
+import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.util.Constant;
+import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -42,7 +48,9 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
+import static com.ufcg.les.aep.model.media.MediaFactory.MediaKey.IMAGE;
 import static com.ufcg.les.aep.util.Constant.APP_SECRET;
 
 
@@ -57,8 +65,6 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     private EditText edtSearch;
     private List<Post> backupMock;
 
-
-
   /**
    * This RecyclerView is responsible to list the {@link com.ufcg.les.aep.model.post.Post} and
    * show then in the {@link FeedActivity} layout. It was bound by the {@link ButterKnife}.
@@ -72,8 +78,30 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
    */
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
-
-
+  
+  
+  @BindView(R.id.captureImage_button)
+  Button captureImage;
+  
+  
+  @OnClick(R.id.captureImage_button)
+  public void onCaptureImageClick() {
+    final AbstractMedia image = MediaFactory.getMedia(this, IMAGE);
+    final Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,image.getUri());
+    startActivity(cameraIntent);
+    
+    final List<AbstractMedia> medias = new ArrayList<>();
+    medias.add(image);
+    
+    Mocker.POST_MOCK.add(new Post("Photo", "Photo description", medias, new ArrayList<>()));
+  }
+  
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  
+  }
+  
   /**
    * This method is responsible to generate all {@link FeedActivity} behaviour when it's created
    * by the Android life cycle.

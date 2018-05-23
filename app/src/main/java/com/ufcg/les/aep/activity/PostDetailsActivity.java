@@ -56,7 +56,7 @@ public class PostDetailsActivity extends AppCompatActivity {
   }
   
   private void initViewPager() {
-    final PostImageAdapter imageAdapter = new PostImageAdapter(this.post.getImages());
+    final PostImageAdapter imageAdapter = new PostImageAdapter(this.post.getMediaList());
     imageViewPager.setAdapter(imageAdapter);
   }
   

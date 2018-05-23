@@ -1,7 +1,8 @@
 package com.ufcg.les.aep.model.media;
 
 import android.content.Context;
-import android.gerson.com.cameraapp.util.MediaUtil;
+
+import com.ufcg.les.aep.util.MediaUtil;
 
 import java.io.File;
 
