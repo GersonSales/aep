@@ -12,6 +12,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -76,8 +77,8 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
 
-  @BindView(R.id.post_creation_button)
-  Button postCreationBtn;
+  @BindView(R.id.submit_button)
+  FloatingActionButton postCreationBtn;
 
   /**
    * This method is responsible to generate all {@link FeedActivity} behaviour when it's created

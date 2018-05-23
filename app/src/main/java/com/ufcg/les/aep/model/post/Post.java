@@ -18,7 +18,12 @@ public class Post implements Serializable , Comparable<Post>{
   private String description;
   private transient List<Bitmap> images;
   private List<Tag> tags;
-  
+
+  public Post() {
+    this.creationDate = new Date();
+    this.id = postId++;
+  }
+
   public Post(String title, String description, List<Bitmap> images, List<Tag> tags) {
     this.creationDate = new Date();
     this.id = postId++;
