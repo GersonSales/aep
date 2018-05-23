@@ -10,7 +10,9 @@ package com.ufcg.les.aep.activity;
 
 import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
@@ -24,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
 
@@ -59,6 +62,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
 
+
   /**
    * This RecyclerView is responsible to list the {@link com.ufcg.les.aep.model.post.Post} and
    * show then in the {@link FeedActivity} layout. It was bound by the {@link ButterKnife}.
@@ -73,6 +77,8 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
 
+  @BindView(R.id.submit_button)
+  FloatingActionButton postCreationBtn;
 
   /**
    * This method is responsible to generate all {@link FeedActivity} behaviour when it's created
@@ -89,6 +95,8 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     mToolbar = findViewById(R.id.toolbar);
     setSupportActionBar(mToolbar);
 
+    // button using 'functional programing'
+    postCreationBtn.setOnClickListener(o -> startActivity(new Intent(FeedActivity.this, PostCreationActivity.class)));
 
     initRecyclerView();
     initAppCenterAnalytics();

@@ -20,7 +20,7 @@ public class Post implements Serializable , Comparable<Post>{
   private String description;
   private List<byte[]> byteImages;
   private List<Tag> tags;
-  
+
   public Post(String title, String description, List<Bitmap> images, List<Tag> tags) {
     this.creationDate = new Date();
     this.id = postId++;
