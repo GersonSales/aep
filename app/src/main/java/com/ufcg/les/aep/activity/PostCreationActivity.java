@@ -45,9 +45,6 @@ public class PostCreationActivity extends AppCompatActivity {
   @BindView(R.id.captureImage_button)
   Button imageCapture;
   
-  @BindView(R.id.videoCapture_button)
-  Button videoCapture;
-  
   @BindView(R.id.submitPost_Button)
   Button submit;
   

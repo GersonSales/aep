@@ -46,5 +46,11 @@ dependencies {
     implementation "com.microsoft.appcenter:appcenter-analytics:${appCenterSdkVersion}"
     implementation "com.microsoft.appcenter:appcenter-crashes:${appCenterSdkVersion}"
 
+    //AdjustableImage
+    implementation 'com.inthecheesefactory.thecheeselibrary:adjustable-imageview:1.0.1'
+
+
+
+
 
 }
