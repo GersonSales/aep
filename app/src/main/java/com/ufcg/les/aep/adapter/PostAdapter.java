@@ -13,6 +13,9 @@ import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.PostViewHolder;
 
 import butterknife.ButterKnife;
+import butterknife.OnFocusChange;
+import butterknife.OnLongClick;
+import butterknife.OnTouch;
 
 public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements Observer {
   private static PostAdapter instance;
@@ -36,6 +39,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements
     final View view = inflateView(parent, inflater);
     ButterKnife.bind(this, view);
     return new PostViewHolder(view);
+    
   }
   
   private View inflateView(@NonNull ViewGroup parent, LayoutInflater inflater) {
@@ -59,4 +63,5 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements
   public void advise() {
     notifyDataSetChanged();
   }
+  
 }
