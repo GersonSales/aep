@@ -1,17 +1,68 @@
 package com.ufcg.les.aep.util;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.ThumbnailUtils;
+import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Environment;
+import android.support.v4.content.FileProvider;
+import android.util.Log;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.concurrent.ExecutionException;
 
+import static android.os.Environment.DIRECTORY_PICTURES;
+import static com.ufcg.les.aep.util.LogTag.FAILURE;
+
 public class MediaUtil {
+  
+  private static final String AUTHORITY = "android.gerson.com.cameraapp";
+  private static final String JPG = "jpg";
+  private static final String MP4 = "mp4";
+  
+  public static final int HIGH_QUALITY = 1;
+  
+  
+  public static Uri getUriFromFile(final Context context, final File file) {
+    return FileProvider.getUriForFile(context, AUTHORITY, file);
+  }
+  
+  public static File createImageFile(final Context context) {
+    return createMediaFile(context.getExternalFilesDir(DIRECTORY_PICTURES), JPG);
+  }
+  
+  public static File createVideoFile(final Context context) {
+    return createMediaFile(context.getExternalFilesDir(Environment.DIRECTORY_MOVIES), MP4);
+  }
+  
+  
+  private static File createMediaFile(final File storageDirectory, final String extension) {
+    final @SuppressLint("SimpleDateFormat") String timeStamp =
+       new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+    
+    final String fileName = extension.toUpperCase() + "_" + timeStamp + "_";
+    File mediaFile = null;
+    try {
+      mediaFile = File.createTempFile(
+         fileName,  /* prefix */
+         "." + extension,         /* suffix */
+         storageDirectory      /* directory */
+      );
+      
+    } catch (IOException e) {
+      Log.e(FAILURE, e.getMessage(), e);
+    }
+    return mediaFile;
+  }
   
   public static class NetworkAccess extends AsyncTask<String, Void, Bitmap> {
     @Override
