@@ -3,6 +3,7 @@ package com.ufcg.les.aep.model.post;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import com.ufcg.les.aep.util.MediaUtil;
 import com.ufcg.les.aep.model.media.AbstractMedia;
 
 import java.io.Serializable;
