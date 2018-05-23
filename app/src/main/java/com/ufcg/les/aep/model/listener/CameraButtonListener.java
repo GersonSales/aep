@@ -10,8 +10,6 @@ import com.ufcg.les.aep.model.media.MediaFactory;
 import static com.ufcg.les.aep.model.media.MediaFactory.MediaKey.IMAGE;
 
 public final class CameraButtonListener implements View.OnClickListener {
-
-  
   @Override
   public void onClick(final View view) {
     final AbstractMedia image = MediaFactory.getMedia(view.getContext(), IMAGE);

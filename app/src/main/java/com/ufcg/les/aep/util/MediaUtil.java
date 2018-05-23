@@ -94,4 +94,27 @@ public class MediaUtil {
     return result;//
   }
   
+  /**
+   * This method create a Bitmap thumbnail from the specified file path.
+   *
+   * @param width     The desired width of the thumbnail.
+   * @param height    The desired height of the thumbnail.
+   * @param imagePath The path of the file that will be user to create the thumbnail.
+   * @return A new generated bitmap.
+   */
+  public static Bitmap getThumbnailFromPath(final int width, final int height, final String imagePath) {
+    final BitmapFactory.Options bmOptions = new BitmapFactory.Options();
+    bmOptions.inJustDecodeBounds = true;
+    BitmapFactory.decodeFile(imagePath, bmOptions);
+    final int photoW = bmOptions.outWidth;
+    final int photoH = bmOptions.outHeight;
+    final int scaleFactor = Math.min(photoW / width, photoH / height);
+    
+    bmOptions.inJustDecodeBounds = false;
+    bmOptions.inSampleSize = scaleFactor;
+    bmOptions.inPurgeable = true;
+    
+    return BitmapFactory.decodeFile(imagePath, bmOptions);
+  }
+  
 }
