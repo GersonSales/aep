@@ -11,6 +11,7 @@ import android.os.Environment;
 import android.support.v4.content.FileProvider;
 import android.util.Log;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +19,8 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import static android.os.Environment.DIRECTORY_PICTURES;
@@ -91,9 +94,45 @@ public class MediaUtil {
     } catch (InterruptedException | ExecutionException e) {
       e.printStackTrace();
     }
-    return result;//
+    return result;
   }
   
+  public  static Bitmap decodeByteArray(byte[] byteArray) {
+    return BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+  }
+  
+  public static List<Bitmap> decodeByteArrayList(final List<byte[]> byteArrayList) {
+    final List<Bitmap> result = new ArrayList<>();
+    for (final byte[] byteArray : byteArrayList) {
+      result.add(decodeByteArray(byteArray));
+    }
+    return result;
+  }
+  
+  public static byte[] encodeBitmap(final Bitmap bitmap) {
+    ByteArrayOutputStream bStream = new ByteArrayOutputStream();
+    bitmap.compress(Bitmap.CompressFormat.PNG, 100, bStream);
+    return bStream.toByteArray();
+  }
+  
+  public static List<byte[]> encodeBitmapList(final List<Bitmap> bitmapList) {
+    final List<byte[]> result = new ArrayList<>();
+    for (final Bitmap bitmap : bitmapList) {
+      result.add(encodeBitmap(bitmap));
+    }
+    return result;
+  }
+  
+  public static List<Bitmap> getBitmapListFromURL(String... urlList) {
+    final List<Bitmap> result  = new ArrayList<>();
+    for (final String url : urlList) {
+      result.add(MediaUtil.getBitmapFromURL(url));
+    }
+    
+    return result;
+    
+  }
+
   /**
    * This method create a Bitmap thumbnail from the specified file path.
    *

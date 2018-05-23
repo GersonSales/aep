@@ -113,6 +113,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
   }
 
   private void refreshFeed() {
+    this.feedRefresher.setRefreshing(true);
     Mocker.update();
     this.feedRefresher.setRefreshing(false);
   }
@@ -146,9 +147,6 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     @Override
     public boolean onQueryTextChange(String newText) {
         if(!newText.isEmpty()) {
-            System.out.println("Porra Junio");
-            System.out.println("Porra Junio");
-            System.out.println("Porra Junio");
             if(backupMock == null) {
                 backupMock = new ArrayList<>();
                 copyToFrom(backupMock, Mocker.POST_MOCK.getList());

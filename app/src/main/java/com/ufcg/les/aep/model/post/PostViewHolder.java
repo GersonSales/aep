@@ -2,15 +2,14 @@ package com.ufcg.les.aep.model.post;
 
 import android.content.Context;
 import android.content.Intent;
-import android.provider.MediaStore;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.activity.PostDetailsActivity;
-import com.ufcg.les.aep.util.MediaUtil;
+import com.ufcg.les.aep.adapter.PostImageAdapter;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -21,14 +20,19 @@ import static com.ufcg.les.aep.util.Tag.POST;
 public class PostViewHolder extends RecyclerView.ViewHolder {
   
   private final Context context;
-  @BindView(R.id.postId_textView)
-  TextView postId;
   
-  @BindView(R.id.imageId_imageObject)
-  ImageView imagePost;
+  @BindView(R.id.postTitle_textView)
+  TextView title;
   
-  @BindView(R.id.postid_titulo)
-  TextView textTitulo;
+//  @BindView(R.id.postImage_imageView)
+//  ImageView imagePost;
+  
+  @BindView(R.id.postImages_viewPager)
+  ViewPager imageViewPager;
+  
+  @BindView(R.id.postDescription_textView)
+  TextView description;
+  
   private Post post;
   
   public PostViewHolder(View itemView) {
@@ -37,16 +41,22 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     ButterKnife.bind(this, itemView);
   }
   
-  public void bind(final Post post) {
-    this.post = post;
-    postId.setText(post.getTitle());
-    imagePost.setImageBitmap(post.getMainImage());
+  private void initViewPager() {
+    final PostImageAdapter imageAdapter = new PostImageAdapter(this.post.getImages());
+    imageViewPager.setAdapter(imageAdapter);
   }
   
-  @OnClick
+  public void bind(final Post post) {
+    this.post = post;
+    this.title.setText(post.getTitle());
+    this.description.setText(post.getDescription());
+    initViewPager();
+  }
+  
+//  @OnClick
   public void onClick() {
-    final Intent detailsIntend = new Intent(this.context, PostDetailsActivity.class);
-    detailsIntend.putExtra(POST, this.post);
-    this.context.startActivity(detailsIntend);//TODO Start the specific activity of the current post.
+    final Intent detailsIntent = new Intent(this.context, PostDetailsActivity.class);
+    detailsIntent.putExtra(POST, this.post);
+    this.context.startActivity(detailsIntent);//TODO Start the specific activity of the current post.
   }
 }
