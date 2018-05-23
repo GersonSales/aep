@@ -149,7 +149,7 @@ public class PostCreationActivity extends AppCompatActivity {
   public void onCaptureImageClick() {
     this.media = MediaFactory.getMedia(this, IMAGE);
     final Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,this.media.getUri());
+    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, this.media.getUri());
     startActivityForResult(cameraIntent, MediaUtil.MEDIA_CAPTURE);
   }
   

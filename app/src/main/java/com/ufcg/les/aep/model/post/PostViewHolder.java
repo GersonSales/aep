@@ -24,9 +24,6 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   @BindView(R.id.postTitle_textView)
   TextView title;
   
-//  @BindView(R.id.postImage_imageView)
-//  ImageView imagePost;
-  
   @BindView(R.id.postImages_viewPager)
   ViewPager imageViewPager;
   

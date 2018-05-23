@@ -28,11 +28,11 @@ public final class MediaFactory {
   
   private static AbstractMedia createVideo(final Context context) {
     final File file  = MediaUtil.createVideoFile(context);
-    return new Video(MediaUtil.getUriFromFile(context, file));
+    return new Video(file, MediaUtil.getUriFromFile(context, file));
   }
   
   private static Image createImage(final Context context) {
     final File file = MediaUtil.createImageFile(context);
-    return new Image(MediaUtil.getUriFromFile(context, file));
+    return new Image(file, MediaUtil.getUriFromFile(context, file));
   }
 }

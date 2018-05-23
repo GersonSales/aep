@@ -5,17 +5,21 @@ import android.net.Uri;
 
 import com.ufcg.les.aep.util.MediaUtil;
 
+import java.io.File;
 import java.io.Serializable;
 
 public class AbstractMedia implements Serializable{
   
   private static final long serialVersionUID = -3428456054992368708L;
   private transient final Uri uri;
-  private transient final Bitmap thumbnail;
+  private final File file;
+  private transient  Bitmap thumbnail;
   
-  AbstractMedia(final Uri uri) {
+  AbstractMedia(final File file, final Uri uri) {
+    System.out.println("AbstractMedia>>>>" + uri);
     this.uri = uri;
-    this.thumbnail = MediaUtil.getThumbnailFromPath(100,100,uri.getPath());
+    this.file = file;
+//    this.thumbnail = MediaUtil.getThumbnailFromPath(350,350, uri.getPath());
   }
   
   public Uri getUri() {
@@ -23,6 +27,8 @@ public class AbstractMedia implements Serializable{
   }
   
   public Bitmap getThumbnail() {
-    return thumbnail;
+    return MediaUtil.getThumbnailFromPath(350,350, this.file.getAbsolutePath());
   }
+  
+  
 }
