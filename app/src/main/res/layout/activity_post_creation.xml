@@ -65,16 +65,44 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailPostCreation_editText" />
 
-    <android.support.design.widget.FloatingActionButton
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:id="@+id/submitPost_button"
+
+    <Button
+        android:id="@+id/captureImage_button"
+        android:layout_width="91dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:layout_gravity="end|bottom"
-        android:src="@mipmap/ic_submit_button_plus"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/take_a_picture"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/phonePostCreation_editText" />
+
+    <Button
+        android:id="@+id/videoCapture_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/record_video"
+        app:layout_constraintEnd_toEndOf="@+id/captureImage_button"
+        app:layout_constraintStart_toStartOf="@+id/captureImage_button"
+        app:layout_constraintTop_toBottomOf="@+id/captureImage_button" />
+
+    <Button
+        android:id="@+id/submitPost_Button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/submit"
+        app:layout_constraintEnd_toEndOf="@+id/videoCapture_button"
+        app:layout_constraintStart_toStartOf="@+id/videoCapture_button"
+        app:layout_constraintTop_toBottomOf="@+id/videoCapture_button" />
 
 
 </android.support.constraint.ConstraintLayout>
