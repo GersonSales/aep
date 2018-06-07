@@ -15,7 +15,7 @@ public class Mocker {
   
   public static void update() {
     Log.i(LogTag.UPDATE, "Initializing the Mockers update.");
-    POST_MOCK.add(new Post("Computer", "I found a computer", getBitmapListFromURL("https://goo.gl/gvu2P8", "https://goo.gl/KTNkUi"), new ArrayList<>()));
+//    POST_MOCK.add(new Post("Computer", "I found a computer", getBitmapListFromURL("https://goo.gl/gvu2P8", "https://goo.gl/KTNkUi"), new ArrayList<>()));
     Log.i(LogTag.UPDATE, "Mocker is up to date.");
   }
 }

@@ -12,10 +12,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,9 +20,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -37,10 +31,8 @@ import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.adapter.PostAdapter;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
-import com.ufcg.les.aep.util.Constant;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
@@ -60,9 +52,6 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     private EditText edtSearch;
     private List<Post> backupMock;
 
-
-
-
   /**
    * This RecyclerView is responsible to list the {@link com.ufcg.les.aep.model.post.Post} and
    * show then in the {@link FeedActivity} layout. It was bound by the {@link ButterKnife}.
@@ -76,9 +65,16 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
    */
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
+  
+  
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  
+  }
+  
 
-  @BindView(R.id.submit_button)
-  FloatingActionButton postCreationBtn;
+  @BindView(R.id.addPost_button)
+  Button postCreationBtn;
 
   /**
    * This method is responsible to generate all {@link FeedActivity} behaviour when it's created

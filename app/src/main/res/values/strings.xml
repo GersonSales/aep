@@ -10,4 +10,7 @@
     <string name="object_description">Object Description</string>
     <string name="object_name">Object name</string>
     <string name="object_contact">Object contact</string>
+    <string name="take_a_picture">Take a picture</string>
+    <string name="record_video">Record Video</string>
+    <string name="submit">Submit</string>
 </resources>

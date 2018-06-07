@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
 import com.ufcg.les.aep.util.MediaUtil;
+import com.ufcg.les.aep.model.media.AbstractMedia;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -18,15 +19,15 @@ public class Post implements Serializable , Comparable<Post>{
   private int id;
   private String title;
   private String description;
-  private List<byte[]> byteImages;
+  private List<AbstractMedia> mediaList;
   private List<Tag> tags;
-
-  public Post(String title, String description, List<Bitmap> images, List<Tag> tags) {
+  
+  public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags) {
     this.creationDate = new Date();
     this.id = postId++;
     this.title = title;
     this.description = description;
-    this.byteImages = MediaUtil.encodeBitmapList(images);
+    this.mediaList = mediaList;
     this.tags = tags;
   }
   
@@ -58,8 +59,8 @@ public class Post implements Serializable , Comparable<Post>{
     this.description = description;
   }
   
-  public List<Bitmap> getImages() {
-    return MediaUtil.decodeByteArrayList(this.byteImages);
+  public List<AbstractMedia> getMediaList() {
+    return mediaList;
   }
   
   public List<Tag> getTags() {
@@ -76,6 +77,6 @@ public class Post implements Serializable , Comparable<Post>{
   }
   
   public Bitmap getMainImage() {
-    return this.byteImages.isEmpty() ? null : MediaUtil.decodeByteArray(this.byteImages.get(0));
+    return mediaList.isEmpty() ? null : mediaList.get(0).getThumbnail();
   }
 }
