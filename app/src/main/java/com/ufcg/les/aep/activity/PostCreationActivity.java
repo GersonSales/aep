@@ -13,6 +13,8 @@ import com.ufcg.les.aep.model.post.Post;
 
 
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -37,7 +39,12 @@ public class PostCreationActivity extends AppCompatActivity {
     @BindView(R.id.submitPost_button)
     FloatingActionButton submitPostBtn;
 
-  
+    private static final String EMAIL_PATTERN =
+            "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+                    + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
+    private static final Pattern patternEmail = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,22 +74,23 @@ public class PostCreationActivity extends AppCompatActivity {
 
     private boolean setPostName(Post post) {
         String name = nomePost.getText().toString();
-        if(!name.trim().equals("")) {
-            post.setTitle(name);
+        if(!name.trim().equals("") && nameValidation(name) ) {
+            //post.setName(name);
             return true;
         } else {
-            showToast("Insira seu nome!");
+            showToast("Insira seu nome corretamente!");
             return false;
+
         }
     }
 
     private boolean setPostDescription(Post post) {
         String description = descriptionPost.getText().toString();
-        if(!description.trim().isEmpty()) {
+        if(!description.trim().isEmpty() && (description.length() > 15)) {
             post.setDescription(description);
             return true;
         } else {
-            showToast("Insira a descrição do item");
+            showToast("Sua descrição deve conter mais de 15 caracteres!");
             return false;
         }
     }
@@ -91,19 +99,21 @@ public class PostCreationActivity extends AppCompatActivity {
         boolean result = false;
         String number = numberPost.getText().toString();
         String email = emailPost.getText().toString();
+        Matcher matcher = patternEmail.matcher(email);
 
-        if(!number.trim().equals("")) {
+        if(!number.trim().equals("") && (number.matches(".((10)|([1-9][1-9]).)\\s9?[6-9][0-9]{3}-[0-9]{4}")
+                || number.matches(".((10)|([1-9][1-9]).)\\s[2-5][0-9]{3}-[0-9]{4}"))) {
             //post.setNumber(number);
             result = true;
         }
 
-        if(!email.trim().equals("")) {
+        if(!email.trim().equals("") && matcher.matches()) {
             //post.setEmail(email);
             result = true;
         }
 
         if(result == false) {
-            showToast("Insira email ou numero para contato!");
+            showToast("Insira email ou numero para contato corretamente!");
         }
 
         return result;
@@ -111,17 +121,33 @@ public class PostCreationActivity extends AppCompatActivity {
 
     public boolean setPostTitle(Post post) {
         String title = titlePost.getText().toString();
-        if(!title.trim().equals("")) {
+        if(!title.trim().equals("") && (title.length() >5)) {
             post.setTitle(title);
             return true;
         } else {
-            showToast("Insira o titulo do objeto!");
+            showToast("Seu título deve conter no mínimo 5 caracteres");
             return false;
         }
     }
 
     public void showToast(String text) {
-        Toast.makeText(this,text, Toast.LENGTH_LONG).show();
+        Toast.makeText(this,text, Toast.LENGTH_SHORT).show();
     }
 
+    /**
+     * That method will return true if the all paramameter string is alphabetic
+     * @param name
+     * @return returnNameValidation
+     */
+    public boolean nameValidation(String name){
+        boolean returnNameValidation = false;
+        for(int i = 0; i < name.length();i++){
+            if(!Character.isDigit(name.charAt(i))){
+                returnNameValidation = true;
+            }else{
+                return false;
+            }
+        }
+        return returnNameValidation;
+    }
 }
