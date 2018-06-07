@@ -81,6 +81,19 @@
         app:layout_constraintTop_toBottomOf="@+id/phonePostCreation_editText" />
 
     <Button
+        android:id="@+id/videoCapture_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/record_video"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/captureImage_button"
+        app:layout_constraintStart_toStartOf="@+id/captureImage_button"
+        app:layout_constraintTop_toBottomOf="@+id/captureImage_button" />
+
+    <Button
         android:id="@+id/submitPost_Button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -88,9 +101,9 @@
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/submit"
-        app:layout_constraintEnd_toEndOf="@+id/captureImage_button"
-        app:layout_constraintStart_toStartOf="@+id/captureImage_button"
-        app:layout_constraintTop_toBottomOf="@+id/captureImage_button" />
+        app:layout_constraintEnd_toEndOf="@+id/videoCapture_button"
+        app:layout_constraintStart_toStartOf="@+id/videoCapture_button"
+        app:layout_constraintTop_toBottomOf="@+id/videoCapture_button" />
 
 
 </android.support.constraint.ConstraintLayout>

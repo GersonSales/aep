@@ -45,6 +45,9 @@ public class PostCreationActivity extends AppCompatActivity {
   @BindView(R.id.captureImage_button)
   Button imageCapture;
   
+  @BindView(R.id.videoCapture_button)
+  Button videoCapture;
+  
   @BindView(R.id.submitPost_Button)
   Button submit;
   
@@ -146,7 +149,7 @@ public class PostCreationActivity extends AppCompatActivity {
   public void onCaptureImageClick() {
     this.media = MediaFactory.getMedia(this, IMAGE);
     final Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, this.media.getUri());
+    cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,this.media.getUri());
     startActivityForResult(cameraIntent, MediaUtil.MEDIA_CAPTURE);
   }
   

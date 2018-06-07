@@ -66,6 +66,12 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
   
+  
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+  
+  }
+  
 
   @BindView(R.id.addPost_button)
   Button postCreationBtn;
@@ -85,6 +91,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     mToolbar = findViewById(R.id.toolbar);
     setSupportActionBar(mToolbar);
 
+    // button using 'functional programing'
     postCreationBtn.setOnClickListener(o -> startActivity(new Intent(FeedActivity.this, PostCreationActivity.class)));
 
     initRecyclerView();
