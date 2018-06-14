@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 public final class Tag implements Serializable{
   private static final long serialVersionUID = 3899416338348004627L;
+  public static final String ACHADO = "achado";
+  public static final String PERDIDO = "perdido";
   
   private final String name;
   

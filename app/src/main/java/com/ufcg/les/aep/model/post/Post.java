@@ -3,9 +3,7 @@ package com.ufcg.les.aep.model.post;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
-import com.ufcg.les.aep.util.MediaUtil;
 import com.ufcg.les.aep.model.media.AbstractMedia;
-import com.ufcg.les.aep.util.TagType;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -22,10 +20,10 @@ public class Post implements Serializable , Comparable<Post>{
   private String description;
   private List<AbstractMedia> mediaList;
   private List<Tag> tags;
-  private TagType tagType;
+  private String tagType;
 
   
-  public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags,TagType tagType) {
+  public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags,String tagType) {
     this.creationDate = new Date();
     this.id = postId++;
     this.title = title;
@@ -39,11 +37,11 @@ public class Post implements Serializable , Comparable<Post>{
     return creationDate;
   }
 
-  public TagType getTagType() {
+  public String getTagType() {
     return tagType;
   }
 
-  public void setTagType(TagType tagType) {
+  public void setTagType(String tagType) {
     this.tagType = tagType;
   }
 
