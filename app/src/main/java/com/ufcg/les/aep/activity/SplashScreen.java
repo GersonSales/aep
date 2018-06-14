@@ -4,12 +4,15 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import com.ufcg.les.aep.model.media.Image;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.model.media.AbstractMedia;
+import com.ufcg.les.aep.model.mock.Mock;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
+import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,6 +37,8 @@ public class SplashScreen extends AppCompatActivity {
   }
   
   private void initPostMock() {
+  
+    Mocker.POST_MOCK.addAll(MediaUtil.readPostList(this));
     
     final String[] iphone4LinkList = {
        "https://goo.gl/C5JgAJ",
@@ -43,7 +48,7 @@ public class SplashScreen extends AppCompatActivity {
     List<AbstractMedia> medias = new ArrayList<>();
     
     for (final Bitmap bitmap : getBitmapListFromURL(iphone4LinkList)) {
-      medias.add(new Image(bitmap));
+//      medias.add(new Image(bitmap));
     }
   
 

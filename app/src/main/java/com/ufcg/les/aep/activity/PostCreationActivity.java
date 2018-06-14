@@ -16,7 +16,6 @@ import android.widget.Toast;
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.model.media.AbstractMedia;
 import com.ufcg.les.aep.model.media.MediaFactory;
-import com.ufcg.les.aep.model.mock.Mock;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
@@ -105,6 +104,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   @OnClick(R.id.submitPost_Button)
   public void onSubmitClick() {
     createPost();
+    MediaUtil.writePost(this, newPost);
   }
   
   private void createPost() {

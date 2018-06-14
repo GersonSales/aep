@@ -94,7 +94,6 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     
     initRecyclerView();
     initAppCenterAnalytics();
-    Mocker.upload(this);
   }
   
   private void initAppCenterAnalytics() {
@@ -186,7 +185,6 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
   
   @Override
   protected void onStop() {
-    Mocker.persist(this);
     super.onStop();
   }
 }

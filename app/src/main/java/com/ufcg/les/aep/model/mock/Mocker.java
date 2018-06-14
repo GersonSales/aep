@@ -19,15 +19,4 @@ public class Mocker implements Serializable {
 //    POST_MOCK.add(new Post("Computer", "I found a computer", getBitmapListFromURL("https://goo.gl/gvu2P8", "https://goo.gl/KTNkUi"), new ArrayList<>()));
     Log.i(LogTag.UPDATE, "Mocker is up to date.");
   }
-  
-  public static void persist(final Context context) {
-    MediaUtil.writeObject(context, POST_MOCK.getList());
-  }
-  
-  public static void upload(final Context context) {
-    final Object object = MediaUtil.readObject(context);
-    if (object instanceof ArrayList) {
-      POST_MOCK.addAll((ArrayList<Post>) object);
-    }
-  }
 }

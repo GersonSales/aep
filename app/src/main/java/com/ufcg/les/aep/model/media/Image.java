@@ -8,7 +8,4 @@ public final class Image extends AbstractMedia {
   Image(final Uri uri) {
     super(uri);
   }
-  public Image(final Bitmap bitmap) {
-    super(bitmap);
-  }
 }
