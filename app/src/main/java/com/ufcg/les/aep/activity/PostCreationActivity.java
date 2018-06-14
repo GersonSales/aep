@@ -19,7 +19,6 @@ import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
-import com.ufcg.les.aep.util.EnvironmentUtil;
 import com.ufcg.les.aep.util.MediaUtil;
 import com.ufcg.les.aep.util.TagType;
 
