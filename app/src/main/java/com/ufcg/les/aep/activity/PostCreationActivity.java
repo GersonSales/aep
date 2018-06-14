@@ -19,6 +19,7 @@ import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
+import com.ufcg.les.aep.util.EnvironmentUtil;
 import com.ufcg.les.aep.util.MediaUtil;
 import com.ufcg.les.aep.util.TagType;
 
@@ -66,6 +67,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   private List<AbstractMedia> medias = new ArrayList<>(); //TODO
   private AbstractMedia media;
   private CharSequence choosedOption;
+  private Post newPost;
   
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +75,6 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     setContentView(R.layout.activity_post_creation);
     ButterKnife.bind(this);
     
-    createSubmitPostBtn();
     createDropdown();
   }
   
@@ -106,8 +107,9 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   }
   
   
-  private void createSubmitPostBtn() {
-    submit.setOnClickListener(o -> createPost());
+  @OnClick(R.id.submitPost_Button)
+  public void onSubmitClick() {
+    createPost();
   }
   
   private void createPost() {
@@ -118,7 +120,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
       tagType = TagType.PERDIDO;
     }
 
-    Post newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
+    newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
     boolean titleValid = setPostTitle(newPost);
     boolean nameValid = setPostName(newPost);
     boolean contactValid = setPostContact(newPost);
