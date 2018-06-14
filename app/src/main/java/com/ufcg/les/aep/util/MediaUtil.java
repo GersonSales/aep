@@ -66,6 +66,7 @@ public class MediaUtil {
     return createMediaFile(storageDirectory, extension, fileName);
     
   }
+  
   private static File createMediaFile(final File storageDirectory, final String extension, final String fileName) {
     File mediaFile = null;
     try {
@@ -150,12 +151,12 @@ public class MediaUtil {
     return BitmapFactory.decodeFile(imagePath, bmOptions);
   }
   
-  public static void writeObject(final Context context, final List<Post> posts) {
+  public static void writePost(final Context context, final Post post) {
     final File file = createObjectFile(context);
     try {
       FileOutputStream fos = new FileOutputStream(file, true);
       ObjectOutputStream oos = new ObjectOutputStream(fos);
-      oos.writeObject(posts);
+      oos.writeObject(post);
     } catch (FileNotFoundException e) {
       e.printStackTrace();
     } catch (IOException e) {
@@ -164,20 +165,28 @@ public class MediaUtil {
     
   }
   
-  public static Object readObject(final Context context) {
-    final File file = createObjectFile(context);
-    try {
-      FileInputStream fos = new FileInputStream(file);
-      ObjectInputStream oos = new ObjectInputStream(fos);
-      return oos.readObject();
-    } catch (FileNotFoundException e) {
-      e.printStackTrace();
-    } catch (IOException e) {
-      e.printStackTrace();
-    } catch (ClassNotFoundException e) {
-      e.printStackTrace();
+  public static List<Post> readPostList(final Context context) {
+    final File folder = context.getExternalFilesDir(Environment.DIRECTORY_DCIM);
+    final List<Post> postList = new ArrayList<>();
+    if (folder == null) return postList;
+    
+    for (File file : folder.listFiles()) {
+      try {
+        FileInputStream fos = new FileInputStream(file);
+        ObjectInputStream oos = new ObjectInputStream(fos);
+        final Object object = oos.readObject();
+        if (object instanceof Post) {
+          postList.add((Post) object);
+        }
+      } catch (FileNotFoundException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
+        e.printStackTrace();
+      } catch (ClassNotFoundException e) {
+        e.printStackTrace();
+      }
     }
-    return null;
+    return postList;
   }
   
   public static class NetworkAccess extends AsyncTask<String, Void, Bitmap> {

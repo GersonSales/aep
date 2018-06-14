@@ -48,7 +48,7 @@ public class PostImageAdapter extends PagerAdapter {
     ContentResolver contentResolver = container.getContext().getContentResolver();
     try {
       thumbnail = MediaStore.Images.Media.getBitmap(contentResolver, this.mediaList.get(position).getUri());
-    } catch (IOException e) {
+    } catch (IOException | NullPointerException e) {
       e.printStackTrace();
     }
     mImageView.setImageBitmap(thumbnail);

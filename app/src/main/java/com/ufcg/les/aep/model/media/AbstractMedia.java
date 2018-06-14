@@ -3,6 +3,7 @@ package com.ufcg.les.aep.model.media;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 
 import com.ufcg.les.aep.util.MediaUtil;
 
@@ -11,16 +12,13 @@ import java.io.Serializable;
 public class AbstractMedia implements Serializable{
   
   private static final long serialVersionUID = -3428456054992368708L;
-  private transient final Uri uri;
+  private transient Uri uri;
+  private final String uriPath;
   private transient Bitmap thumbnail;
-  
-  AbstractMedia(final Bitmap bitmap) {
-    this.uri = null;
-    this.thumbnail = bitmap;
-  }
-  
-  AbstractMedia(final Uri uri) {
+
+  AbstractMedia(@NonNull final Uri uri) {
     this.uri = uri;
+    this.uriPath = uri.toString();
     this.thumbnail = getThumbnailFromPath(uri);
   }
   
@@ -30,6 +28,9 @@ public class AbstractMedia implements Serializable{
   }
   
   public Uri getUri() {
+    if (this.uri == null) {
+      this.uri = Uri.parse(this.uriPath);
+    }
     return uri;
   }
   
