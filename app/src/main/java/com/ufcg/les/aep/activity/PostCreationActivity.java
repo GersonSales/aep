@@ -20,6 +20,7 @@ import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
 import com.ufcg.les.aep.util.MediaUtil;
+import com.ufcg.les.aep.util.TagType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +38,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   private static final String EMAIL_PATTERN =
      "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+
   private static final Pattern patternEmail = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
   @BindView(R.id.submitPost_button)
   FloatingActionButton submitPostBtn;
@@ -58,6 +60,8 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   Button submit;
   @BindView(R.id.lost_n_found_dropdown)
   Spinner dropdown;
+  @BindView(R.id.tagPostCreation_editText)
+  EditText tagPost;
 
   private List<AbstractMedia> medias = new ArrayList<>(); //TODO
   private AbstractMedia media;
@@ -107,18 +111,30 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   }
   
   private void createPost() {
-    Post newPost = new Post("", "", this.medias, new ArrayList<>());
-    
+    TagType tagType;
+    if(choosedOption.toString() == "Achado") {
+      tagType = TagType.ACHADO;
+    }else{
+      tagType = TagType.PERDIDO;
+    }
+
+    Post newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
     boolean titleValid = setPostTitle(newPost);
     boolean nameValid = setPostName(newPost);
     boolean contactValid = setPostContact(newPost);
     boolean descriptionValid = setPostDescription(newPost);
     boolean imagesValid = checkImages();
 
-    ArrayList<Tag> tags = new ArrayList();
-    tags.add(new Tag(choosedOption.toString()));
-    newPost.setTags(tags);
-    
+    String tagsFromPost = tagPost.getText().toString();
+    String[] tagsSplited = tagsFromPost.split("\\s+");
+    ArrayList<Tag> newTags = new ArrayList<>();
+
+    for (String item: tagsSplited) {
+        newTags.add(new Tag(item));
+    }
+
+    newPost.setTags(newTags);
+
     if (titleValid && nameValid && contactValid && descriptionValid && imagesValid) {
       Mocker.POST_MOCK.add(newPost);
       finish();
@@ -151,7 +167,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   
   public boolean setPostTitle(Post post) {
     String title = titlePost.getText().toString();
-    if (!title.trim().equals("") && (title.length() > 5)) {
+    if (!title.trim().equals("") && (title.length() >= 5)) {
       post.setTitle(title);
       return true;
     } else {
