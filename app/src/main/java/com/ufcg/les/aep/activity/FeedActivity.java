@@ -139,15 +139,9 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
       return true;
   }
 
-    /**
-     *
-     * @param query
-     * @return
-     */
-
     @Override
     public boolean onQueryTextSubmit(String query) {
-        return true;
+        return false;
     }
 
     /**
