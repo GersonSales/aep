@@ -112,10 +112,10 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   
   private void createPost() {
     String tagType;
-    if(choosedOption.toString().equalsIgnoreCase("achado")) {
-      tagType = "achado";
+    if(choosedOption.toString().equalsIgnoreCase(Tag.ACHADO)) {
+      tagType = Tag.ACHADO;
     }else{
-      tagType = "perdido";
+      tagType = Tag.PERDIDO;
     }
 
     Post newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
