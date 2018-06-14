@@ -12,6 +12,7 @@ import android.app.SearchManager;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -59,8 +60,9 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
    */
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
+  
   @BindView(R.id.addPost_button)
-  Button postCreationBtn;
+  FloatingActionButton postCreationBtn;
   private Toolbar mToolbar;
   private MenuItem mSearchAction;
   private boolean isSearchOpened = false;

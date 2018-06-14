@@ -41,8 +41,6 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
   private static final Pattern patternEmail = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
-  @BindView(R.id.submitPost_button)
-  FloatingActionButton submitPostBtn;
   @BindView(R.id.titlePostCreation_editText)
   EditText titlePost;
   @BindView(R.id.namePostCreation_editText)
@@ -54,9 +52,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   @BindView(R.id.descriptionPostCreation_editText)
   EditText descriptionPost;
   @BindView(R.id.captureImage_button)
-  Button imageCapture;
-  @BindView(R.id.videoCapture_button)
-  Button videoCapture;
+  FloatingActionButton imageCapture;
   @BindView(R.id.submitPost_Button)
   Button submit;
   @BindView(R.id.lost_n_found_dropdown)
