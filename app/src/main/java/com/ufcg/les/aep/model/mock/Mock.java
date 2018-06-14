@@ -11,7 +11,8 @@ public class Mock<T extends Comparable<T>> implements Observable {
   
   private List<Observer> observers;
   private List<T> list;
-  
+
+
   public Mock() {
     list = new ArrayList<>();
     observers = new ArrayList<>();
