@@ -1,5 +1,7 @@
 package com.ufcg.les.aep.behaviour;
 
-public interface Observer {
+import java.io.Serializable;
+
+public interface Observer extends Serializable{
     void advise();
 }

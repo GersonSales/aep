@@ -13,4 +13,9 @@
     <string name="take_a_picture">Take a picture</string>
     <string name="record_video">Record Video</string>
     <string name="submit">Submit</string>
+    <string name="tags">Tags</string>
+    <string name="telefone_xx_xxxxx_xxxx">Telefone (xx) xxxxx-xxxx</string>
+    <string name="email">Email</string>
+    <string name="seu_nome">Seu nome</string>
+    <string name="descri_o">Descrição</string>
 </resources>

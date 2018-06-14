@@ -40,8 +40,6 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
   private static final Pattern patternEmail = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
-  @BindView(R.id.submitPost_button)
-  FloatingActionButton submitPostBtn;
   @BindView(R.id.titlePostCreation_editText)
   EditText titlePost;
   @BindView(R.id.namePostCreation_editText)
@@ -53,9 +51,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   @BindView(R.id.descriptionPostCreation_editText)
   EditText descriptionPost;
   @BindView(R.id.captureImage_button)
-  Button imageCapture;
-  @BindView(R.id.videoCapture_button)
-  Button videoCapture;
+  FloatingActionButton imageCapture;
   @BindView(R.id.submitPost_Button)
   Button submit;
   @BindView(R.id.lost_n_found_dropdown)
@@ -66,6 +62,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   private List<AbstractMedia> medias = new ArrayList<>(); //TODO
   private AbstractMedia media;
   private CharSequence choosedOption;
+  private Post newPost;
   
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -73,7 +70,6 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     setContentView(R.layout.activity_post_creation);
     ButterKnife.bind(this);
     
-    createSubmitPostBtn();
     createDropdown();
   }
   
@@ -106,8 +102,9 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   }
   
   
-  private void createSubmitPostBtn() {
-    submit.setOnClickListener(o -> createPost());
+  @OnClick(R.id.submitPost_Button)
+  public void onSubmitClick() {
+    createPost();
   }
   
   private void createPost() {
@@ -118,7 +115,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
       tagType = Tag.PERDIDO;
     }
 
-    Post newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
+    newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
     boolean titleValid = setPostTitle(newPost);
     boolean nameValid = setPostName(newPost);
     boolean contactValid = setPostContact(newPost);

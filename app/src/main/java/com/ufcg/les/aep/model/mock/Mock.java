@@ -5,14 +5,16 @@ import com.ufcg.les.aep.behaviour.Observer;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class Mock<T extends Comparable<T>> implements Observable {
+public class Mock<T extends Comparable<T>> implements Observable, Serializable{
   
+  private static final long serialVersionUID = -358346662188309747L;
   private List<Observer> observers;
   private List<T> list;
   private Map posts;
@@ -101,4 +103,7 @@ public class Mock<T extends Comparable<T>> implements Observable {
   }
   
   
+  public void addAll(List<T> tList) {
+    list.addAll(tList);
+  }
 }
