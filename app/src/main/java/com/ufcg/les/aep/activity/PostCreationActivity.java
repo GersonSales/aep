@@ -113,18 +113,19 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     boolean nameValid = setPostName(newPost);
     boolean contactValid = setPostContact(newPost);
     boolean descriptionValid = setPostDescription(newPost);
+    boolean imagesValid = checkImages();
 
     ArrayList<Tag> tags = new ArrayList();
     tags.add(new Tag(choosedOption.toString()));
     newPost.setTags(tags);
     
-    if (titleValid && nameValid && contactValid && descriptionValid) {
+    if (titleValid && nameValid && contactValid && descriptionValid && imagesValid) {
       Mocker.POST_MOCK.add(newPost);
       finish();
     }
   }
-  
-  private boolean setPostDescription(Post post) {
+
+    private boolean setPostDescription(Post post) {
     String description = descriptionPost.getText().toString();
     if (!description.trim().isEmpty() && (description.length() > 15)) {
       post.setDescription(description);
@@ -208,5 +209,15 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
         choosedOption = (CharSequence) parent.getItemAtPosition(0);
+    }
+
+    private boolean checkImages() {
+      boolean result = true;
+      if(medias.size() == 0 && choosedOption.equals("Achado")) {
+          result = false;
+          showToast("É necessário pelo menos 1 foto");
+      }
+      
+      return result;
     }
 }
