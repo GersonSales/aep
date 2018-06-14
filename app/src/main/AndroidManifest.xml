@@ -35,16 +35,17 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PostCreationActivity">
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+
+        <activity android:name=".activity.PostCreationActivity" android:parentActivityName=".activity.FeedActivity" android:theme="@style/AppTheme">
+            <!--<meta-data android:name="android.app.searchable"-->
+                <!--android:resource="@xml/searchable" />-->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PostDetailsActivity" android:theme="@style/mytheme"
+        <activity android:name=".activity.PostDetailsActivity"
             android:parentActivityName=".activity.FeedActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
