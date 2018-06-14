@@ -8,6 +8,7 @@ import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.ufcg.les.aep.model.media.AbstractMedia;
 
@@ -41,7 +42,8 @@ public class PostImageAdapter extends PagerAdapter {
   @Override
   public Object instantiateItem(@NonNull final ViewGroup container, final int position) {
     ImageView mImageView = new ImageView(container.getContext());
-    mImageView.setScaleType(ImageView.ScaleType.CENTER);
+    mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+
     Bitmap thumbnail = null;//this.mediaList.get(position).getThumbnail();
     ContentResolver contentResolver = container.getContext().getContentResolver();
     try {
@@ -50,6 +52,7 @@ public class PostImageAdapter extends PagerAdapter {
       e.printStackTrace();
     }
     mImageView.setImageBitmap(thumbnail);
+    
     container.addView(mImageView, 0);
     return mImageView;
   }
