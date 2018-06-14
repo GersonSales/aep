@@ -3,13 +3,14 @@ package com.ufcg.les.aep.model.post;
 import android.graphics.Bitmap;
 import android.support.annotation.NonNull;
 
+import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.model.media.AbstractMedia;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-public class Post implements Serializable , Comparable<Post>{
+public class Post implements Serializable, Comparable<Post> {
   private static final long serialVersionUID = 690241872815232514L;
   
   private static int postId;
@@ -21,9 +22,9 @@ public class Post implements Serializable , Comparable<Post>{
   private List<AbstractMedia> mediaList;
   private List<Tag> tags;
   private String tagType;
-
   
-  public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags,String tagType) {
+  
+  public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags, String tagType) {
     this.creationDate = new Date();
     this.id = postId++;
     this.title = title;
@@ -36,15 +37,23 @@ public class Post implements Serializable , Comparable<Post>{
   public Date getCreationDate() {
     return creationDate;
   }
-
+  
   public String getTagType() {
     return tagType;
   }
-
+  
   public void setTagType(String tagType) {
     this.tagType = tagType;
   }
-
+  
+  public int getTypeColor() {
+    if (getTagType().equals(Tag.ACHADO)) {
+      return R.color.foundTagColor;
+    }
+    return R.color.lostTagColor;
+    
+  }
+  
   public int getId() {
     return id;
   }

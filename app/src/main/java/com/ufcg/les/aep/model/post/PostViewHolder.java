@@ -1,5 +1,6 @@
 package com.ufcg.les.aep.model.post;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v4.view.ViewPager;
@@ -33,6 +34,9 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   @BindView(R.id.postDescription_textView)
   TextView description;
   
+  @BindView(R.id.postType_textView)
+  /*default*/ TextView postType;
+  
   private Post post;
   
   public PostViewHolder(View itemView) {
@@ -46,12 +50,16 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
     imageViewPager.setAdapter(imageAdapter);
   }
   
+  @SuppressLint({ "ResourceAsColor", "NewApi" })
   public void bind(final Post post) {
     this.post = post;
     this.title.setText(post.getTitle());
     this.description.setText(post.getDescription());
+    this.postType.setBackgroundColor(context.getColor(post.getTypeColor()));
+    this.postType.setText(post.getTagType());
     initViewPager();
   }
+  
   
 //  @OnClick
   public void onClick() {

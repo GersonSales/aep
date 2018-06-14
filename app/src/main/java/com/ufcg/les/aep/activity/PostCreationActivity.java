@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ufcg.les.aep.R;
+import com.ufcg.les.aep.adapter.CapturedImageAdapter;
 import com.ufcg.les.aep.model.media.AbstractMedia;
 import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
@@ -57,6 +60,9 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   Spinner dropdown;
   @BindView(R.id.tagPostCreation_editText)
   EditText tagPost;
+  
+  @BindView(R.id.capturedImages_recyclerView)
+  /*default*/ RecyclerView recyclerView;
 
   private List<AbstractMedia> medias = new ArrayList<>(); //TODO
   private AbstractMedia media;
@@ -70,6 +76,13 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     ButterKnife.bind(this);
     
     createDropdown();
+    initRecyclerView();
+  }
+  
+  private void initRecyclerView() {
+    recyclerView.setLayoutManager(new LinearLayoutManager(this,
+       LinearLayoutManager.HORIZONTAL, false));
+    recyclerView.setAdapter(CapturedImageAdapter.getInstance());
   }
   
   public void showToast(String text) {
@@ -205,6 +218,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
     if (resultCode == RESULT_OK) {
       this.medias.add(this.media);
+      CapturedImageAdapter.getInstance().addMedia(this.media);
     }
   }
 
