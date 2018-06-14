@@ -118,6 +118,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   public void onSubmitClick() {
     createPost();
     MediaUtil.writePost(this, newPost);
+    CapturedImageAdapter.getInstance().clear();
   }
   
   private void createPost() {

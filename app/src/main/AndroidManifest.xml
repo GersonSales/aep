@@ -45,8 +45,7 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.PostDetailsActivity"
-            android:parentActivityName=".activity.FeedActivity">
+        <activity android:name=".activity.PostDetailsActivity"  android:parentActivityName=".activity.FeedActivity" android:theme="@style/mytheme">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />

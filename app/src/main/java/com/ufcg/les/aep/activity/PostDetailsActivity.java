@@ -27,9 +27,6 @@ public class PostDetailsActivity extends AppCompatActivity {
   @BindView(R.id.postImage_viewpager)
   ViewPager imageViewPager;
 
-//  @BindView(R.id.postImage_imageView)
-//  ImageView postImage;
-
   @BindView(R.id.postDescription_textView)
   TextView postDescription;
 

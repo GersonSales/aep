@@ -61,10 +61,21 @@ public class PostViewHolder extends RecyclerView.ViewHolder {
   }
   
   
-//  @OnClick
+  @OnClick
   public void onClick() {
     final Intent detailsIntent = new Intent(this.context, PostDetailsActivity.class);
     detailsIntent.putExtra(POST, this.post);
     this.context.startActivity(detailsIntent);//TODO Start the specific activity of the current post.
   }
+  
+  @OnClick(R.id.postImages_viewPager)
+  public void onViewPagerClick() {
+    onClick();
+  }
+  
+  @OnClick(R.id.postType_textView)
+  public void onTypeClick() {
+    System.out.println("TYPE");
+  }
+  
 }
