@@ -2,13 +2,14 @@ package com.ufcg.les.aep.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import com.ufcg.les.aep.model.media.Image;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.ufcg.les.aep.R;
+import com.ufcg.les.aep.model.media.AbstractMedia;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
-import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,13 +35,20 @@ public class SplashScreen extends AppCompatActivity {
   
   private void initPostMock() {
     
-//    final String[] iphone4LinkList = {
-//       "https://goo.gl/C5JgAJ",
-//       "https://goo.gl/ud3n9L"
-//    };
-//
-//
-//    final Post iphone4Post = new Post("Iphone4", "I've lost an Iphone 4", getBitmapListFromURL(iphone4LinkList), null);
+    final String[] iphone4LinkList = {
+       "https://goo.gl/C5JgAJ",
+       "https://goo.gl/ud3n9L"
+    };
+
+    List<AbstractMedia> medias = new ArrayList<>();
+    
+    for (final Bitmap bitmap : getBitmapListFromURL(iphone4LinkList)) {
+      medias.add(new Image(bitmap));
+    }
+  
+
+    final Post iphone4Post = new Post("Iphone 4", "description", medias, null, null);
+//    final Post iphone4Post = new Post("Iphone4", "I've lost an Iphone 4", getBitmapListFromURL(iphone4LinkList), null, null);
 //    Mocker.POST_MOCK.add(iphone4Post);
 //
 //
