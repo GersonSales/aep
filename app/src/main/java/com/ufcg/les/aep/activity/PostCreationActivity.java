@@ -216,8 +216,11 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
       if(medias.size() == 0 && choosedOption.equals("Achado")) {
           result = false;
           showToast("É necessário pelo menos 1 foto");
+      } else if(medias.size() > 5) {
+          result = false;
+          showToast("Quantidade de fotos excedida");
       }
-      
+
       return result;
     }
 }
