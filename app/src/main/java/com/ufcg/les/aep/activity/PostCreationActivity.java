@@ -5,8 +5,12 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ufcg.les.aep.R;
@@ -14,6 +18,7 @@ import com.ufcg.les.aep.model.media.AbstractMedia;
 import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
+import com.ufcg.les.aep.model.post.Tag;
 import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
@@ -27,7 +32,7 @@ import butterknife.OnClick;
 
 import static com.ufcg.les.aep.model.media.MediaFactory.MediaKey.IMAGE;
 
-public class PostCreationActivity extends AppCompatActivity {
+public class PostCreationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
   
   private static final String EMAIL_PATTERN =
      "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
@@ -51,8 +56,12 @@ public class PostCreationActivity extends AppCompatActivity {
   Button videoCapture;
   @BindView(R.id.submitPost_Button)
   Button submit;
+  @BindView(R.id.lost_n_found_dropdown)
+  Spinner dropdown;
+
   private List<AbstractMedia> medias = new ArrayList<>(); //TODO
   private AbstractMedia media;
+  private CharSequence choosedOption;
   
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -61,6 +70,7 @@ public class PostCreationActivity extends AppCompatActivity {
     ButterKnife.bind(this);
     
     createSubmitPostBtn();
+    createDropdown();
   }
   
   public void showToast(String text) {
@@ -103,14 +113,19 @@ public class PostCreationActivity extends AppCompatActivity {
     boolean nameValid = setPostName(newPost);
     boolean contactValid = setPostContact(newPost);
     boolean descriptionValid = setPostDescription(newPost);
+    boolean imagesValid = checkImages();
+
+    ArrayList<Tag> tags = new ArrayList();
+    tags.add(new Tag(choosedOption.toString()));
+    newPost.setTags(tags);
     
-    if (titleValid && nameValid && contactValid && descriptionValid) {
+    if (titleValid && nameValid && contactValid && descriptionValid && imagesValid) {
       Mocker.POST_MOCK.add(newPost);
       finish();
     }
   }
-  
-  private boolean setPostDescription(Post post) {
+
+    private boolean setPostDescription(Post post) {
     String description = descriptionPost.getText().toString();
     if (!description.trim().isEmpty() && (description.length() > 15)) {
       post.setDescription(description);
@@ -178,5 +193,34 @@ public class PostCreationActivity extends AppCompatActivity {
       this.medias.add(this.media);
     }
   }
-  
+
+    private void createDropdown() {
+      ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.lost_n_found_tags,android.R.layout.simple_spinner_item);
+      adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+      dropdown.setAdapter(adapter);
+      dropdown.setOnItemSelectedListener(this);
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        choosedOption = (CharSequence) parent.getItemAtPosition(position);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+        choosedOption = (CharSequence) parent.getItemAtPosition(0);
+    }
+
+    private boolean checkImages() {
+      boolean result = true;
+      if(medias.size() == 0 && choosedOption.equals("Achado")) {
+          result = false;
+          showToast("É necessário pelo menos 1 foto");
+      } else if(medias.size() > 5) {
+          result = false;
+          showToast("Quantidade de fotos excedida");
+      }
+
+      return result;
+    }
 }

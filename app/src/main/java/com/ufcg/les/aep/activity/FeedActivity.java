@@ -141,13 +141,15 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        ArrayList<Post> newMock = new ArrayList<>(backupMock);
-        Mocker.POST_MOCK.setList(newMock);
-        backupMock = null;
-
-        return true;
+        return false;
     }
 
+    /**
+     * This method receive newText from search bar and filter posts from feed with newText.
+     * If newText is empty, reset and show all feed posts.
+     * @param newText
+     * @return
+     */
     @Override
     public boolean onQueryTextChange(String newText) {
         if(!newText.isEmpty()) {
