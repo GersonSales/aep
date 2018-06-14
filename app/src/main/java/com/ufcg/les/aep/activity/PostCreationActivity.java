@@ -16,11 +16,11 @@ import android.widget.Toast;
 import com.ufcg.les.aep.R;
 import com.ufcg.les.aep.model.media.AbstractMedia;
 import com.ufcg.les.aep.model.media.MediaFactory;
+import com.ufcg.les.aep.model.mock.Mock;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
 import com.ufcg.les.aep.util.MediaUtil;
-import com.ufcg.les.aep.util.TagType;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,11 +111,11 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   }
   
   private void createPost() {
-    TagType tagType;
-    if(choosedOption.toString() == "Achado") {
-      tagType = TagType.ACHADO;
+    String tagType;
+    if(choosedOption.toString().equalsIgnoreCase(Tag.ACHADO)) {
+      tagType = Tag.ACHADO;
     }else{
-      tagType = TagType.PERDIDO;
+      tagType = Tag.PERDIDO;
     }
 
     Post newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
@@ -135,8 +135,9 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
 
     newPost.setTags(newTags);
 
-    if (titleValid && nameValid && contactValid && descriptionValid && imagesValid) {
+    if (titleValid && nameValid && descriptionValid && imagesValid && contactValid) {
       Mocker.POST_MOCK.add(newPost);
+      Mocker.POST_MOCK.addMapTagType(newPost);
       finish();
     }
   }

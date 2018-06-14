@@ -2,22 +2,55 @@ package com.ufcg.les.aep.model.mock;
 
 import com.ufcg.les.aep.behaviour.Observable;
 import com.ufcg.les.aep.behaviour.Observer;
+import com.ufcg.les.aep.model.post.Post;
+import com.ufcg.les.aep.model.post.Tag;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Mock<T extends Comparable<T>> implements Observable {
   
   private List<Observer> observers;
   private List<T> list;
-
+  private Map posts;
 
   public Mock() {
     list = new ArrayList<>();
+    posts = new HashMap<String,ArrayList<Post>>();
     observers = new ArrayList<>();
   }
-  
+
+  public void addMapTagType(Post post){
+    if(post.getTagType().equals(Tag.ACHADO)){
+      if(posts.containsKey(Tag.ACHADO)){
+        ArrayList<Post> aux = (ArrayList<Post>) posts.get(Tag.ACHADO);
+
+        posts.put(Tag.ACHADO,aux.add(post));
+
+
+      }else{
+        ArrayList arrayListAux = new ArrayList<Post>();
+        arrayListAux.add(post);
+        posts.put(Tag.ACHADO,arrayListAux);
+
+      }
+    } else if (post.getTagType().equals(Tag.PERDIDO)) {
+      if(posts.containsKey(Tag.PERDIDO)){
+        ArrayList<Post> aux = (ArrayList<Post>) posts.get(Tag.PERDIDO);
+
+        posts.put(Tag.PERDIDO,aux.add(post));
+
+      }else{
+        ArrayList arrayListAux = new ArrayList<Post>();
+        arrayListAux.add(post);
+        posts.put(Tag.PERDIDO,arrayListAux);
+
+      }
+    }
+  }
   public void add(T t) {
     list.add(t);
     Collections.sort(this.list);
@@ -50,6 +83,15 @@ public class Mock<T extends Comparable<T>> implements Observable {
       this.list = list;
       notifyAllObservers();
   }
+
+  public Map getPosts() {
+    return posts;
+  }
+
+  public void setPosts(Map posts) {
+    this.posts = posts;
+  }
+
   public List<T> getList() { return this.list;  }
   
   private void notifyAllObservers() {
