@@ -35,7 +35,7 @@ import static com.ufcg.les.aep.model.media.MediaFactory.MediaKey.IMAGE;
 public class PostCreationActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
   
   private static final String EMAIL_PATTERN =
-     "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+     "^[_.%+A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 
   private static final Pattern patternEmail = Pattern.compile(EMAIL_PATTERN, Pattern.CASE_INSENSITIVE);
@@ -104,7 +104,6 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   @OnClick(R.id.submitPost_Button)
   public void onSubmitClick() {
     createPost();
-    MediaUtil.writePost(this, newPost);
   }
   
   private void createPost() {
@@ -135,6 +134,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     if (titleValid && nameValid && descriptionValid && imagesValid && contactValid) {
       Mocker.POST_MOCK.add(newPost);
       Mocker.POST_MOCK.addMapTagType(newPost);
+      MediaUtil.writePost(this, newPost);
       finish();
     }
   }
