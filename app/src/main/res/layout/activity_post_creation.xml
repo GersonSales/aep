@@ -125,14 +125,28 @@
         android:layout_marginTop="8dp"
         android:background="@color/colorAccentDark"
         android:text="@string/submit"
+        android:textColor="@color/colorIcons"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:textSize="16sp"
-        android:textColor="@color/colorIcons"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 
-
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/capturedImages_recyclerView"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/submitPost_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/lost_n_found_dropdown" />
 
 
 </android.support.constraint.ConstraintLayout>

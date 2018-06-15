@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -14,6 +16,7 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.ufcg.les.aep.R;
+import com.ufcg.les.aep.adapter.CapturedImageAdapter;
 import com.ufcg.les.aep.model.media.AbstractMedia;
 import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
@@ -57,6 +60,9 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   Spinner dropdown;
   @BindView(R.id.tagPostCreation_editText)
   EditText tagPost;
+  
+  @BindView(R.id.capturedImages_recyclerView)
+  /*default*/ RecyclerView recyclerView;
 
   private List<AbstractMedia> medias = new ArrayList<>(); //TODO
   private AbstractMedia media;
@@ -70,6 +76,13 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     ButterKnife.bind(this);
     
     createDropdown();
+    initRecyclerView();
+  }
+  
+  private void initRecyclerView() {
+    recyclerView.setLayoutManager(new LinearLayoutManager(this,
+       LinearLayoutManager.HORIZONTAL, false));
+    recyclerView.setAdapter(CapturedImageAdapter.getInstance());
   }
   
   public void showToast(String text) {
@@ -84,12 +97,12 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     
     if (!number.trim().equals("") && (number.matches(".((10)|([1-9][1-9]).)\\s9?[6-9][0-9]{3}-[0-9]{4}")
        || number.matches(".((10)|([1-9][1-9]).)\\s[2-5][0-9]{3}-[0-9]{4}"))) {
-      //post.setNumber(number);
+      post.setNumberContact(number);
       result = true;
     }
     
     if (!email.trim().equals("") && matcher.matches()) {
-      //post.setEmail(email);
+      post.setEmailContact(email);
       result = true;
     }
     
@@ -104,6 +117,8 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   @OnClick(R.id.submitPost_Button)
   public void onSubmitClick() {
     createPost();
+    MediaUtil.writePost(this, newPost);
+    CapturedImageAdapter.getInstance().clear();
   }
   
   private void createPost() {
@@ -141,11 +156,11 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
 
     private boolean setPostDescription(Post post) {
     String description = descriptionPost.getText().toString();
-    if (!description.trim().isEmpty() && (description.length() > 15)) {
+    if (!description.trim().isEmpty() && (description.length() >= 6)) {
       post.setDescription(description);
       return true;
     } else {
-      showToast("Sua descrição deve conter mais de 15 caracteres!");
+      showToast("Sua descrição deve conter pelo menos 6 caracteres!");
       return false;
     }
   }
@@ -153,7 +168,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   private boolean setPostName(Post post) {
     String name = nomePost.getText().toString();
     if (!name.trim().equals("") && nameValidation(name)) {
-      //post.setName(name);
+      post.setNameContact(name);
       return true;
     } else {
       showToast("Insira seu nome corretamente!");
@@ -165,11 +180,11 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   
   public boolean setPostTitle(Post post) {
     String title = titlePost.getText().toString();
-    if (!title.trim().equals("") && (title.length() >= 5)) {
+    if (!title.trim().equals("") && (title.length() >= 2)) {
       post.setTitle(title);
       return true;
     } else {
-      showToast("Seu título deve conter no mínimo 5 caracteres");
+      showToast("Seu título deve conter no mínimo 2 caracteres");
       return false;
     }
   }
@@ -205,6 +220,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   protected void onActivityResult(int requestCode, int resultCode, final Intent data) {
     if (resultCode == RESULT_OK) {
       this.medias.add(this.media);
+      CapturedImageAdapter.getInstance().addMedia(this.media);
     }
   }
 

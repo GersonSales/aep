@@ -27,9 +27,6 @@ public class PostDetailsActivity extends AppCompatActivity {
   @BindView(R.id.postImage_viewpager)
   ViewPager imageViewPager;
 
-//  @BindView(R.id.postImage_imageView)
-//  ImageView postImage;
-
   @BindView(R.id.postDescription_textView)
   TextView postDescription;
 
@@ -81,10 +78,18 @@ public class PostDetailsActivity extends AppCompatActivity {
   }
 
   private void setPostContent(Post post) {
-    postDescription.setText(post.getDescription());
-
-    postName.setText("Name: ".concat(" Nome a criar no model POST"));
-
-    postContact.setText("Contato: ".concat("Contato a criar no model POST"));
+    postDescription.setText("Descrição: " + post.getDescription());
+    postName.setText("Name: " + post.getNameContact());
+    if(post.getEmailContact() != null && post.getNumberContact() != null) {
+      postContact.setText("Numero: " + post.getNumberContact() + " " + "Email: " + post.getEmailContact());
+    }
+    else if (post.getEmailContact() != null) {
+      postContact.setText("Email: " + post.getEmailContact());
+    }
+    else if (post.getNumberContact() != null) {
+      postContact.setText("Numero: " + post.getNumberContact());
+    }
+    
+    //postTags.setText
   }
 }
