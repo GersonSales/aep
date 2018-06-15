@@ -97,12 +97,12 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     
     if (!number.trim().equals("") && (number.matches(".((10)|([1-9][1-9]).)\\s9?[6-9][0-9]{3}-[0-9]{4}")
        || number.matches(".((10)|([1-9][1-9]).)\\s[2-5][0-9]{3}-[0-9]{4}"))) {
-      //post.setNumber(number);
+      post.setNumberContact(number);
       result = true;
     }
     
     if (!email.trim().equals("") && matcher.matches()) {
-      //post.setEmail(email);
+      post.setEmailContact(email);
       result = true;
     }
     
@@ -155,11 +155,11 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
 
     private boolean setPostDescription(Post post) {
     String description = descriptionPost.getText().toString();
-    if (!description.trim().isEmpty() && (description.length() > 15)) {
+    if (!description.trim().isEmpty() && (description.length() >= 6)) {
       post.setDescription(description);
       return true;
     } else {
-      showToast("Sua descrição deve conter mais de 15 caracteres!");
+      showToast("Sua descrição deve conter pelo menos 6 caracteres!");
       return false;
     }
   }
@@ -167,7 +167,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   private boolean setPostName(Post post) {
     String name = nomePost.getText().toString();
     if (!name.trim().equals("") && nameValidation(name)) {
-      //post.setName(name);
+      post.setNameContact(name);
       return true;
     } else {
       showToast("Insira seu nome corretamente!");
@@ -179,11 +179,11 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   
   public boolean setPostTitle(Post post) {
     String title = titlePost.getText().toString();
-    if (!title.trim().equals("") && (title.length() >= 5)) {
+    if (!title.trim().equals("") && (title.length() >= 2)) {
       post.setTitle(title);
       return true;
     } else {
-      showToast("Seu título deve conter no mínimo 5 caracteres");
+      showToast("Seu título deve conter no mínimo 2 caracteres");
       return false;
     }
   }

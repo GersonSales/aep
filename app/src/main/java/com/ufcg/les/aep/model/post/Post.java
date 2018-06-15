@@ -22,7 +22,9 @@ public class Post implements Serializable, Comparable<Post> {
   private List<AbstractMedia> mediaList;
   private List<Tag> tags;
   private String tagType;
-  
+  private String nameContact;
+  private String numberContact;
+  private String emailContact;
   
   public Post(String title, String description, List<AbstractMedia> mediaList, List<Tag> tags, String tagType) {
     this.creationDate = new Date();
@@ -32,6 +34,30 @@ public class Post implements Serializable, Comparable<Post> {
     this.mediaList = mediaList;
     this.tags = tags;
     this.tagType = tagType;
+  }
+  
+  public String getNameContact() {
+    return nameContact;
+  }
+  
+  public void setNameContact(String nameContact) {
+    this.nameContact = nameContact;
+  }
+  
+  public String getNumberContact() {
+    return numberContact;
+  }
+  
+  public void setNumberContact(String numberContact) {
+    this.numberContact = numberContact;
+  }
+  
+  public String getEmailContact() {
+    return emailContact;
+  }
+  
+  public void setEmailContact(String emailContact) {
+    this.emailContact = emailContact;
   }
   
   public Date getCreationDate() {
