@@ -25,6 +25,7 @@ public class SplashScreen extends AppCompatActivity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_splash_screen);
+
     
     new Thread() {
       @Override
@@ -35,6 +36,8 @@ public class SplashScreen extends AppCompatActivity {
       }
     }.start();
   }
+
+
   
   private void initPostMock() {
   

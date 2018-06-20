@@ -1,8 +1,12 @@
 package com.ufcg.les.aep.activity;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -22,6 +26,7 @@ import com.ufcg.les.aep.model.media.MediaFactory;
 import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.Tag;
+import com.ufcg.les.aep.util.Enviroment;
 import com.ufcg.les.aep.util.MediaUtil;
 
 import java.util.ArrayList;
@@ -68,6 +73,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   private AbstractMedia media;
   private CharSequence choosedOption;
   private Post newPost;
+  //private static final int  REQUEST_CAMERA = 500;
   
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -208,12 +214,15 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
     return returnNameValidation;
   }
   
+  @RequiresApi(api = Build.VERSION_CODES.M)
   @OnClick(R.id.captureImage_button)
   public void onCaptureImageClick() {
     this.media = MediaFactory.getMedia(this, IMAGE);
     final Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
     cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT,this.media.getUri());
-    startActivityForResult(cameraIntent, MediaUtil.MEDIA_CAPTURE);
+    if(Enviroment.requestCameraPermission(this)) {
+      startActivityForResult(cameraIntent, MediaUtil.MEDIA_CAPTURE);
+    }
   }
   
   @Override
