@@ -8,5 +8,9 @@
         app:showAsAction="collapseActionView|ifRoom"
         app:actionViewClass="android.support.v7.widget.SearchView" />
 
-
+    <item android:id="@+id/filter"
+        android:title="filter post"
+        android:icon="@android:drawable/stat_sys_download"
+        app:showAsAction="collapseActionView|ifRoom"
+        />
 </menu>
