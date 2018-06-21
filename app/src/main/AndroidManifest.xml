@@ -27,8 +27,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".activity.FeedActivity">
-            <meta-data android:name="android.app.searchable"
-                android:resource="@xml/searchable" />
+
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 

@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item android:id="@+id/search"
-        android:title="Champson"
-        android:icon="@mipmap/lupa_nova"
+        android:title="search post"
+        android:icon="@android:drawable/ic_menu_search"
         app:showAsAction="collapseActionView|ifRoom"
-        app:actionViewClass="android.widget.SearchView" />
+        app:actionViewClass="android.support.v7.widget.SearchView" />
 
 
 </menu>
