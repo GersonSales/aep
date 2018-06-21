@@ -156,30 +156,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
    */
   @Override
   public boolean onQueryTextChange(String newText) {
-    if (!newText.isEmpty()) {
-      if (backupMock == null) {
-        backupMock = new ArrayList<>();
-        copyToFrom(backupMock, Mocker.POST_MOCK.getList());
-      }
-      
-      List<Post> newMock = new ArrayList<>();
-      System.out.println(newText);
-      for (Post post : Mocker.POST_MOCK.getList()) {
-        if (post.getTitle().charAt(newText.length() - 1) == (newText.charAt(newText.length() - 1))) {
-          newMock.add(post);
-        }
-      }
-      
-      Mocker.POST_MOCK.setList(newMock);
-      return true;
-      
-    } else if (newText.isEmpty()) {
-      ArrayList<Post> newMock = new ArrayList<>(backupMock);
-      Mocker.POST_MOCK.setList(newMock);
-      backupMock = null;
-    }
-    
-    return false;
+    return doSearch(newText);
   }
   
   private void copyToFrom(List to, List<Post> from) {
@@ -191,5 +168,33 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
   @Override
   protected void onStop() {
     super.onStop();
+  }
+
+  private boolean doSearch(String queryText) {
+      boolean result = false;
+      if (!queryText.isEmpty()) {
+          if (backupMock == null) {
+              backupMock = new ArrayList<>();
+              copyToFrom(backupMock, Mocker.POST_MOCK.getList());
+          }
+
+          List<Post> newMock = new ArrayList<>();
+          System.out.println(queryText);
+          for (Post post : Mocker.POST_MOCK.getList()) {
+              if (post.getTitle().charAt(queryText.length() - 1) == (queryText.charAt(queryText.length() - 1))) {
+                  newMock.add(post);
+              }
+          }
+
+          Mocker.POST_MOCK.setList(newMock);
+          result = true;
+
+      } else if (queryText.isEmpty()) {
+          ArrayList<Post> newMock = new ArrayList<>(backupMock);
+          Mocker.POST_MOCK.setList(newMock);
+          backupMock = null;
+      }
+
+      return result;
   }
 }
