@@ -21,6 +21,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -60,9 +61,13 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
    */
   @BindView(R.id.feed_swipeRefresh)
   SwipeRefreshLayout feedRefresher;
-  
-  @BindView(R.id.addPost_button)
-  FloatingActionButton postCreationBtn;
+
+  @BindView(R.id.floating_post_id)
+   com.github.clans.fab.FloatingActionButton postCreationBtn;
+
+  @BindView(R.id.floating_save_id)
+  com.github.clans.fab.FloatingActionButton savePictureBtn;
+
   private Toolbar mToolbar;
   private MenuItem mSearchAction;
   private boolean isSearchOpened = false;
@@ -91,7 +96,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     
     // button using 'functional programing'
     postCreationBtn.setOnClickListener(o -> startActivity(new Intent(FeedActivity.this, PostCreationActivity.class)));
-    
+
     initRecyclerView();
     initAppCenterAnalytics();
   }
