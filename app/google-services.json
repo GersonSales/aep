@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "517741483648",
+    "firebase_url": "https://lostandfound-13ce6.firebaseio.com",
+    "project_id": "lostandfound-13ce6",
+    "storage_bucket": "lostandfound-13ce6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:517741483648:android:0e9d4dcf08665489",
+        "android_client_info": {
+          "package_name": "com.ufcg.les.aep"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "517741483648-q7orsdk74enucb63r7h0mvndrq4em1k7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ufcg.les.aep",
+            "certificate_hash": "a25e8fed3f3e3aa3138e8b7e63026c2ffc27776a"
+          }
+        },
+        {
+          "client_id": "517741483648-e22nhp3kkiar2rs5shdu0cq9f5m2cb61.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnWAJPbRmrV79L7848DTdyJWVcnMjGg2o"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "517741483648-e22nhp3kkiar2rs5shdu0cq9f5m2cb61.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

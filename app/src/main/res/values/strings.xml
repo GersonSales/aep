@@ -1,3 +1,89 @@
 <resources>
     <string name="app_name">Aep</string>
+    <string name="splash_screen">SplashScreen</string>
+    <string name="feed">Feed</string>
+    <string name="post">post</string>
+    <string name="details">details</string>
+    <string name="date">Date</string>
+    <string name="title_activity_main2">Main2Activity</string>
+    <string name="object_title">Object Title</string>
+    <string name="todo">TODO</string>
+    <string name="object_description">Object Description</string>
+    <string name="object_name">Object name</string>
+    <string name="object_contact">Object contact</string>
+    <string name="take_a_picture">Take a picture</string>
+    <string name="record_video">Record Video</string>
+    <string name="submit">Submit</string>
+    <string name="tags">Tags</string>
+    <string name="telefone_xx_xxxxx_xxxx">Telefone (xx) xxxxx-xxxx</string>
+    <string name="email">Email</string>
+    <string name="seu_nome">Seu nome</string>
+    <string name="descri_o">Descrição</string>
+    <string name="remover_filtro">Remover filtro</string>
+    <string name="filtrar">Filtrar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="lost_and_found">Lost And Found</string>
+    <string name="title_activity_xurips">Sign in</string>
+    <string name="identifier_error">There is no user record corresponding to this identifier. The user may have been deleted.</string>
+    <string name="password_error">The password is invalid or the user does not have a password.</string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="phone_number">Phone number</string>
+    <string name="password">Password</string>
+    <string name="password_confirmation">Password confirmation</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="username">UserName</string>
+    <string name="sign_out">Sign out</string>
+    <string name="description_error_message">Must contain at least 6 characters</string>
+    <string name="title_error_message">Must contain at least 2 characters.</string>
+    <string name="image_error_message">Must contain at least one image.</string>
+    <string name="add_new_post">Add new post</string>
+    <string name="save_a_picture">Save a picture</string>
+    <string name="filter_by_date">Filter by date</string>
+    <string name="images">Images</string>
+    <string name="home">Home</string>
+    <string name="profile">Profile</string>
+    <string name="try_again">Try again</string>
+    <string name="invalid_email">Invalid e-mail</string>
+    <string name="not_registered_email_message">The informed E-mail does not appear to be registered.</string>
+    <string name="register">Register</string>
+    <string name="registes">Register</string>
+    <string name="register_email">Register E-mail</string>
+    <string name="email_not_registered">E-mail not registered</string>
+    <string name="account_successful_created">Account successful created</string>
+    <string name="post_search">Post search</string>
+    <string name="user_name">User name</string>
+    <string name="user_image">User image</string>
+    <string name="user_mail_com">user@mail.com</string>
+    <string name="_99_9_9999_9999">(99)9 9999-9999</string>
+    <string name="post_creation_cancel">Post creation cancel</string>
+    <string name="user_storage">User storage</string>
+    <string name="my_storage">My storage</string>
+    <string name="new_post">New Post</string>
+    <string name="would_you_like_to_post_this_image">Would you like to post this image?</string>
+    <string name="yes">Yes</string>
+    <string name="close">Close</string>
+    <string name="description">description</string>
+    <string name="author">Author</string>
+    <string name="phone_contact">Phone contact</string>
 </resources>
