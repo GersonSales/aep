@@ -5,7 +5,7 @@ import android.net.Uri;
 
 public final class Image extends AbstractMedia {
   
-  Image(final Uri uri) {
+  public Image(final Uri uri) {
     super(uri);
   }
 }

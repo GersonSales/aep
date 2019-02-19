@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
@@ -56,6 +57,10 @@ public class MediaUtil {
   
   public static File createVideoFile(final Context context) {
     return createMediaFile(context.getExternalFilesDir(Environment.DIRECTORY_MOVIES), MP4);
+  }
+  
+  public static Bitmap getResizedBitmap(final Bitmap image, final int bitmapWidth, final int bitmapHeight) {
+    return Bitmap.createScaledBitmap(image, bitmapWidth, bitmapHeight, true);
   }
   
   
@@ -162,7 +167,18 @@ public class MediaUtil {
     } catch (IOException e) {
       e.printStackTrace();
     }
-    
+  }
+  
+  public static Bitmap rotateBitmap(final Bitmap loadedImage, final float degrees) {
+    Bitmap result = null;
+    if (loadedImage != null) {
+      Matrix rotateMatrix = new Matrix();
+      rotateMatrix.postRotate(degrees);
+      result = Bitmap.createBitmap(loadedImage, 0, 0,
+         loadedImage.getWidth(), loadedImage.getHeight(),
+         rotateMatrix, false);
+    }
+    return result;
   }
   
   public static List<Post> readPostList(final Context context) {
@@ -175,7 +191,7 @@ public class MediaUtil {
         FileInputStream fos = new FileInputStream(file);
         ObjectInputStream oos = new ObjectInputStream(fos);
         final Object object = oos.readObject();
-        if (object instanceof Post) {
+        if (object instanceof Post && !postList.contains(object)) {
           postList.add((Post) object);
         }
       } catch (FileNotFoundException e) {

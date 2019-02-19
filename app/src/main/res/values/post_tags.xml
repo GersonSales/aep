@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="lost_n_found_tags">
-        <item>Achado</item>
-        <item>Perdido</item>
+        <item>Lost</item>
+        <item>Found</item>
+    </string-array>
+    <string-array name="lost_mutiples_tags">
+        <item>---</item>
+        <item>acessorio</item>
+        <item>automoveis</item>
+        <item>brinquedos</item>
+        <item>animais</item>
+        <item>itens_pessoais</item>
     </string-array>
 </resources>

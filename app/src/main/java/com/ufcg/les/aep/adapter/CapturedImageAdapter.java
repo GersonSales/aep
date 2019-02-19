@@ -12,6 +12,7 @@ import com.ufcg.les.aep.model.media.ImageViewHolder;
 import com.ufcg.les.aep.model.post.PostViewHolder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.ButterKnife;
@@ -55,13 +56,17 @@ public class CapturedImageAdapter extends RecyclerView.Adapter<ImageViewHolder> 
     return mediaList.size();
   }
   
-  public void addMedia(final AbstractMedia media) {
-    mediaList.add(media);
+  public void addMedia(final AbstractMedia... media) {
+    mediaList.addAll(Arrays.asList(media));
     notifyDataSetChanged();
   }
   
   
   public void clear() {
     mediaList.clear();
+  }
+  
+  public void addAll(final List<AbstractMedia> medias) {
+    this.mediaList.addAll(medias);
   }
 }
