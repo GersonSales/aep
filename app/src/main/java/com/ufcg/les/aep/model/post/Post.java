@@ -234,4 +234,12 @@ public class Post implements Serializable, Comparable<Post> {
   public String getOwnerPhoneNumber() {
     return ownerPhoneNumber;
   }
+
+  public Object getTagType() {
+    return Tag.FOUND;
+  }
+
+  public void setTags(ArrayList<Tag> newTags) {
+
+  }
 }

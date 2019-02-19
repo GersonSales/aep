@@ -129,13 +129,13 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
   
   private void createPost() {
     String tagType;
-    if(choosedOption.toString().equalsIgnoreCase(Tag.ACHADO)) {
-      tagType = Tag.ACHADO;
+    if(choosedOption.toString().equalsIgnoreCase(Tag.FOUND)) {
+      tagType = Tag.FOUND;
     }else{
-      tagType = Tag.PERDIDO;
+      tagType = Tag.LOST;
     }
 
-    newPost = new Post("", "", this.medias, new ArrayList<>(),tagType);
+    newPost = new Post("", "", this.medias,"", "",  null);
     boolean titleValid = setPostTitle(newPost);
     boolean nameValid = setPostName(newPost);
     boolean contactValid = setPostContact(newPost);
@@ -252,7 +252,7 @@ public class PostCreationActivity extends AppCompatActivity implements AdapterVi
 
     private boolean checkImages() {
       boolean result = true;
-      if(medias.size() == 0 && choosedOption.equals("Achado")) {
+      if(medias.size() == 0 && choosedOption.equals("FOUND")) {
           result = false;
           showToast("É necessário pelo menos 1 foto");
       } else if(medias.size() > 5) {

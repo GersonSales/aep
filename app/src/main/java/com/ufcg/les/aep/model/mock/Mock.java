@@ -26,29 +26,29 @@ public class Mock<T extends Comparable<T>> implements Observable, Serializable{
   }
 
   public void addMapTagType(Post post){
-    if(post.getTagType().equals(Tag.ACHADO)){
-      if(posts.containsKey(Tag.ACHADO)){
-        ArrayList<Post> aux = (ArrayList<Post>) posts.get(Tag.ACHADO);
+    if(post.getTagType().equals(Tag.FOUND)){
+      if(posts.containsKey(Tag.FOUND)){
+        ArrayList<Post> aux = (ArrayList<Post>) posts.get(Tag.FOUND);
 
-        posts.put(Tag.ACHADO,aux.add(post));
+        posts.put(Tag.FOUND,aux.add(post));
 
 
       }else{
         ArrayList arrayListAux = new ArrayList<Post>();
         arrayListAux.add(post);
-        posts.put(Tag.ACHADO,arrayListAux);
+        posts.put(Tag.FOUND,arrayListAux);
 
       }
-    } else if (post.getTagType().equals(Tag.PERDIDO)) {
-      if(posts.containsKey(Tag.PERDIDO)){
-        ArrayList<Post> aux = (ArrayList<Post>) posts.get(Tag.PERDIDO);
+    } else if (post.getTagType().equals(Tag.LOST)) {
+      if(posts.containsKey(Tag.LOST)){
+        ArrayList<Post> aux = (ArrayList<Post>) posts.get(Tag.LOST);
 
-        posts.put(Tag.PERDIDO,aux.add(post));
+        posts.put(Tag.LOST,aux.add(post));
 
       }else{
         ArrayList arrayListAux = new ArrayList<Post>();
         arrayListAux.add(post);
-        posts.put(Tag.PERDIDO,arrayListAux);
+        posts.put(Tag.LOST,arrayListAux);
 
       }
     }

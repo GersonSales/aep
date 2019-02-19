@@ -151,7 +151,7 @@ public class MediaUtil {
     
     bmOptions.inJustDecodeBounds = false;
     bmOptions.inSampleSize = scaleFactor;
-    bmOptions.inPurgeable = true;
+//    bmOptions.inPurgeable = true;
     
     return BitmapFactory.decodeFile(imagePath, bmOptions);
   }

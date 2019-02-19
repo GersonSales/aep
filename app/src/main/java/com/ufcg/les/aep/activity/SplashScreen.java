@@ -55,7 +55,7 @@ public class SplashScreen extends AppCompatActivity {
     }
   
 
-    final Post iphone4Post = new Post("Iphone 4", "description", medias, null, null);
+//    final Post iphone4Post = new Post("Iphone 4", "description", medias, null, null);
 //    final Post iphone4Post = new Post("Iphone4", "I've lost an Iphone 4", getBitmapListFromURL(iphone4LinkList), null, null);
 //    Mocker.POST_MOCK.add(iphone4Post);
 //

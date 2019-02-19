@@ -133,7 +133,7 @@ public class FeedActivity extends AppCompatActivity implements SearchView.OnQuer
     SearchManager searchManager =
        (SearchManager) getSystemService(Context.SEARCH_SERVICE);
     SearchView searchView =
-       (SearchView) menu.findItem(R.id.search).getActionView();
+       (SearchView) menu.findItem(R.id.post_search).getActionView();
     searchView.setSearchableInfo(
        searchManager.getSearchableInfo(getComponentName()));
     
