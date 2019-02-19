@@ -7,17 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ufcg.les.aep.R;
-import com.ufcg.les.aep.behaviour.Observer;
-import com.ufcg.les.aep.model.mock.Mocker;
 import com.ufcg.les.aep.model.post.Post;
 import com.ufcg.les.aep.model.post.PostViewHolder;
+import com.ufcg.les.aep.util.service.PostBuffer;
 
 import butterknife.ButterKnife;
-import butterknife.OnFocusChange;
-import butterknife.OnLongClick;
-import butterknife.OnTouch;
 
-public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements Observer {
+public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements PostBuffer.PostBufferObserver {
   private static PostAdapter instance;
   
   static {
@@ -25,7 +21,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements
   }
   
   private PostAdapter() {
-    Mocker.POST_MOCK.attachObserver(this);
+    PostBuffer.getInstance().addObserver(this);
   }
   
   public static PostAdapter getInstance() {
@@ -51,17 +47,22 @@ public class PostAdapter extends RecyclerView.Adapter<PostViewHolder> implements
     holder.bind(getPostByPosition(position));
   }
   
-  private Post getPostByPosition(int position) {
-    return Mocker.POST_MOCK.getByPosition(position);
+  private Post getPostByPosition(final int position) {
+    return PostBuffer.getInstance().getByPosition(position);
   }
   
   @Override
   public int getItemCount() {
-    return Mocker.POST_MOCK.size();
+    return PostBuffer.getInstance().size();
   }
   
-  public void advise() {
+  public void filterByNameThatContains(final String text) {
+    PostBuffer.getInstance().filterByNameThatContains(text);
     notifyDataSetChanged();
   }
   
+  public void restoreList() {
+    PostBuffer.getInstance().filterByNameThatContains("");
+    notifyDataSetChanged();
+  }
 }

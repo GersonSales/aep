@@ -167,6 +167,7 @@ obj/
 /out/
 
 # User-specific configurations
+.idea/*
 .idea/assetWizardSettings.xml
 .idea/caches/*
 .idea/libraries/

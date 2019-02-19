@@ -1,8 +1,6 @@
 package com.ufcg.les.aep.adapter;
 
-import android.content.ContentResolver;
 import android.graphics.Bitmap;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -11,12 +9,10 @@ import android.widget.ImageView;
 
 import com.ufcg.les.aep.model.media.AbstractMedia;
 
-import java.io.IOException;
 import java.util.List;
 
-import butterknife.OnClick;
-
 public class PostImageAdapter extends PagerAdapter {
+  
   
   private final List<AbstractMedia> mediaList;
   private ImageView mImageView;
@@ -33,7 +29,20 @@ public class PostImageAdapter extends PagerAdapter {
   @Override
   public void destroyItem(@NonNull final ViewGroup container, final int position,
                           @NonNull final Object object) {
-    container.removeView((ImageView) object);
+    container.removeView((View) object);
+    unbindDrawables((View) object);
+  }
+  
+  private void unbindDrawables(View view) {
+    if (view.getBackground() != null) {
+      view.getBackground().setCallback(null);
+    }
+    if (view instanceof ViewGroup) {
+      for (int i = 0; i < ((ViewGroup) view).getChildCount(); i++) {
+        unbindDrawables(((ViewGroup) view).getChildAt(i));
+      }
+      ((ViewGroup) view).removeAllViews();
+    }
   }
   
   @Override
@@ -49,14 +58,8 @@ public class PostImageAdapter extends PagerAdapter {
     
     setupImageClickListener();
     mImageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
-    
-    Bitmap thumbnail = null;
-    ContentResolver contentResolver = container.getContext().getContentResolver();
-    try {
-      thumbnail = MediaStore.Images.Media.getBitmap(contentResolver, this.mediaList.get(position).getUri());
-    } catch (IOException | NullPointerException e) {
-      e.printStackTrace();
-    }
+    Bitmap thumbnail = this.mediaList.get(position).getThumbnail();
+  
     mImageView.setImageBitmap(thumbnail);
     
     container.addView(mImageView, 0);

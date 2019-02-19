@@ -7,9 +7,6 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
-
-import com.ufcg.les.aep.activity.PostCreationActivity;
 
 
 public class Enviroment extends AppCompatActivity {
@@ -21,10 +18,9 @@ public class Enviroment extends AppCompatActivity {
     public static boolean requestCameraPermission(final Activity activity) {
         boolean result = false;
         if ((ActivityCompat.checkSelfPermission(activity, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED)
-                || (ActivityCompat.checkSelfPermission(activity,Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)){
-            ActivityCompat.requestPermissions(activity, PERMISSION_REQ,REQUEST_CODE);
-        }
-        else{
+                || (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+            ActivityCompat.requestPermissions(activity, PERMISSION_REQ, REQUEST_CODE);
+        } else {
             result = true;
         }
         return result;
@@ -34,5 +30,19 @@ public class Enviroment extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA
     };
-    
+    private static final String[] PERMISSION_REQ_WRITE = {
+            Manifest.permission.WRITE_EXTERNAL_STORAGE
+    };
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    public static boolean requestStoragePermission(final Activity activity) {
+        boolean result = false;
+        if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(activity,PERMISSION_REQ_WRITE,REQUEST_WRITE_STORAGE);
+        }else{
+            result = true;
+        }
+        return result;
+    }
 }
+
